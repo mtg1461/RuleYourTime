@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="activities.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <title>Rule Your Time | Edit</title>
+</head>
+<body>
+    <div class="header">
+        <div class="main_box" id="mainbox"></div>
+        <div class="main_alertbox" id="main_alertbox"><div class="main_hidealertbox" onclick="hidemainalertbox()"><div class="xsymbol">&#10005</div></div>
+            <p id="main_alertboxtext">Are you sure to delete all activities?</p>
+            <button class="main_alertboxbutton" id="main_alertboxbutton" onclick="main_alertboxbutton()">OK</button>
+        </div>
+        <div class="subnavbar">
+            <button class="deleteeveryactivity" onclick="areusuretodeleteeveryactivity()">&#128465;</button>
+            <button class="settings"><div class="fa">&#xf013;</div></button>
+            <a href="progress.html">
+                <img src="process-logo.png" alt="">
+            </a>
+        </div>
+        <div class="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="black_box"></div>
+        <div class="settings_box">
+            <span><div class="xsymbol">&#10005</div></span>
+            <div class="box">
+                <div class="slider">
+                    <input class="timesizeinput" type="range" min="0" max="100" value="30" id="timesizeinput" onchange="timelinesize()" onmousemove="timelinesize()">
+                </div>
+                <span>Time Line Size</span>
+                <div class="value" id="sizevalue">30%</div>
+            </div>
+            <div class="settings_starttime">
+                <select name="Start Time" id="timelinestartselector" class="starttimeselector" onchange="aresuretochangestarttime()">
+                <option value="0">12AM</option>
+                <option value="1">1AM</option>
+                <option value="2">2AM</option>
+                <option value="3">3AM</option>
+                <option value="4">4AM</option>
+                <option value="5">5AM</option>
+                <option value="6" selected>6AM</option>
+                <option value="7">7AM</option>
+                <option value="8">8AM</option>
+                <option value="9">9AM</option>
+                <option value="10">10AM</option>
+                <option value="11">11AM</option>
+                <option value="12">12PM</option>
+                <option value="13">1PM</option>
+                <option value="14">2PM</option>
+                <option value="15">3PM</option>
+                <option value="16">4PM</option>
+                <option value="17">5PM</option>
+                <option value="18">6PM</option>
+                <option value="19">7PM</option>
+                <option value="20">8PM</option>
+                <option value="21">9PM</option>
+                <option value="22">10PM</option>
+                <option value="23">11PM</option>
+            </select>
+            <p>Time Line Start</p>
+        </div>            
+        </div>
+        <button class="settings"><div class="fa">&#xf013;</div></button>
+        <button class="deleteeveryactivity" id="deleteeveryactivity" onclick="areusuretodeleteeveryactivity()">&#128465;</button>
+        <div class="triangle-left" id="triangle-left">&#11164;</div>
+        <div class="current_date" id="current_date"></div>
+        <div class="triangle-right" id="triangle-right">&#11166;</div>
+        <div class="date_box" id="date_box">
+            <button class="hide_datebox" id="hide_datebox"><div class="xsymbol">&#10005</div></button>
+            <button class="day" style="margin-left: 3vw;" id="1"></button>
+            <button class="day" id="2"></button>
+            <button class="day" id="3"></button>
+            <button class="day" id="4"></button>
+            <button class="day" id="5"></button>
+            <button class="day" id="6"></button>
+            <button class="day" id="7"></button>
+            <button class="day" id="8"></button>
+            <button class="day" id="9"></button>
+            <button class="day" id="10"></button>
+            <button class="day" id="11"></button>
+            <button class="day" id="12"></button>
+            <button class="day" id="13"></button>
+            <button class="day" id="14"></button>
+            <button class="day" id="15"></button>
+        </div>
+        <div class="image_container">
+            <img src="MTG.png" alt="">
+        </div>
+        <a class="progress" href="progress.html">
+            <div class="image_container">
+                <img src="process-logo.png" alt="">
+            </div>
+        </a>
+    </div>
+    <div class="content">
+    <button class="button-63" role="button" onclick="bringeditor()" id="bringeditor">+</button>
+    <div class="editingtool" id="editingtool">
+        <button class="closeediting" id="closeediting" onclick="hideeditor(false)">x</button>
+        <div class="alertbox" id="alertbox">
+            <button class="hidealertbox" id="hidealertbox" onclick="alertboxhide()"><div class="xsymbol">X</div></button>
+            <p id="alertboxtext"></p>
+            <button class="alertboxbutton" id="alertboxbutton" onclick="alertboxbutton()">OK</button>
+        </div>
+        <h3>EDITOR</h3>
+        <div class="favoriteactivities" id="favoriteactivities">
+            <ul>
+                <li class="favoritestar"><button >&#9733;</button></li>
+                <div class="favoritesfordisplay">
+                <li class="favoriteedit"><button id="newfavorite" class="newfavorite" onclick="addnewfavorite()">new</button><button id="deletefavorite" class="deletefavorite">delete</button></li>
+                <li><button class="onefavorite" id="fav1" onclick="fav1()"></button></li>
+                <li><button class="onefavorite" id="fav2" onclick="fav2()"></button></li>
+                <li> <button class="onefavorite" id="fav3" onclick="fav3()"></button></li>
+                <li><button class="onefavorite" id="fav4" onclick="fav4()"></button></li>
+                <li><button class="onefavorite" id="fav5" onclick="fav5()"></button></li> 
+                </div>                  
+            </ul>
+        </div>
+        <div class="input1container">
+            <input type="text" autocomplete="off" placeholder="Enter Name" class="input-text1" id="input-text1" maxlength="20" onfocus="inputstyle1()" onblur="inputstyle1reverse()" onmouseover="inputstyle1mouseover()" onmouseout="inputstyle1mouseout()" onchange="newactivityname()">
+            <label for="name" class="inputlabel1" id="inputlabel1" onmouseover="inputstyle1mouseover()" onmouseout="inputstyle1mouseout()">name</label>
+        </div>
+        <div class="input2container">
+            <textarea rows="5" cols="50" aria-autocomplete="off" placeholder="(Optional)" class="input-text2" id="input-text2" maxlength="300" onfocus="inputstyle2()" onblur="inputstyle2reverse()" onmouseover="inputstyle2mouseover()" onmouseout="inputstyle2mouseout()"></textarea>
+            <label for="description" class="inputlabel2" id="inputlabel2" onmouseover="inputstyle2mouseover()" onmouseout="inputstyle2mouseout()">description</label>
+        </div>
+        <input type="range" min="0" max="1530" id="colorselector" class="colorselector" onchange="findthergb(false)" onmousemove="findthergb(false)">
+        <div class="colorbox" id="colorbox"></div>
+        <div class="colortext">color</div>
+        <input type="time" class="starttimepicker" id="starttimepicker" onchange="starttimechange()">
+        <div class="starttimepickertext">start time</div>
+        <input type="time" class="endtimepicker" id="endtimepicker" onchange="endtimechange()">
+        <div class="endtimepickertext">end time</div>
+        <nav id="nav" class="editornav1">
+            <a href="#" onmouseover="part1()" onmouseout="lastpart()" onclick="par1()">1</a>
+            <a href="#" onmouseover="part2()" onmouseout="lastpart()" onclick="par2()">2</a>
+            <a href="#" onmouseover="part3()" onmouseout="lastpart()" onclick="par3()">3</a>
+            <a href="#" onmouseover="part4()" onmouseout="lastpart()" onclick="par4()">4</a>
+            <a href="#" onmouseover="part5()" onmouseout="lastpart()" onclick="par5()">5</a>
+            <a href="#" onmouseover="part6()" onmouseout="lastpart()" onclick="par6()">6</a>
+            <a href="#" onmouseover="part7()" onmouseout="lastpart()" onclick="par7()">7</a>
+            <a href="#" onmouseover="part8()" onmouseout="lastpart()" onclick="par8()">8</a>
+            <a href="#" onmouseover="part9()" onmouseout="lastpart()" onclick="par9()">9</a>
+            <a href="#" onmouseover="part10()" onmouseout="lastpart()" onclick="par10()">10</a>
+            <div class="animation start-part1" id="navselector"></div>
+          </nav>
+          <nav id="nav2" class="editornav2">
+            <a href="#" onmouseover="part12()" onmouseout="lastpart2()" onclick="par12()">1</a>
+            <a href="#" onmouseover="part22()" onmouseout="lastpart2()" onclick="par22()">2</a>
+            <a href="#" onmouseover="part32()" onmouseout="lastpart2()" onclick="par32()">3</a>
+            <a href="#" onmouseover="part42()" onmouseout="lastpart2()" onclick="par42()">4</a>
+            <a href="#" onmouseover="part52()" onmouseout="lastpart2()" onclick="par52()">5</a>
+            <a href="#" onmouseover="part62()" onmouseout="lastpart2()" onclick="par62()">6</a>
+            <a href="#" onmouseover="part72()" onmouseout="lastpart2()" onclick="par72()">7</a>
+            <a href="#" onmouseover="part82()" onmouseout="lastpart2()" onclick="par82()">8</a>
+            <a href="#" onmouseover="part92()" onmouseout="lastpart2()" onclick="par92()">9</a>
+            <a href="#" onmouseover="part102()" onmouseout="lastpart2()" onclick="par102()">10</a>
+            <div class="animation start-part1" id="navselector2"></div>
+          </nav>
+          <div class="hateorlove">hate</div>
+          <div class="loveorhate">love</div>
+          <div class="importantornotimportant">important</div>
+          <div class="notimportantorimportant">not important</div>
+          <div class="loveorhatetext">How much do you like doing this activity?</div>
+          <div class="importancetext">How important is this activity?</div>
+          <button class="saveedit" onclick="areusuretosave()">SAVE</button>
+          <button class="deleteedit" onclick="areusuretodelete(false)">DELETE</button>
+    </div>
+    <div class="timeline">
+        <div class="current_time" id="current_time"></div>
+        <div class="timeline1" id="timeline1">
+            <div id="activitystartA1" class="activity"></div>
+            <div id="activitystartA2" class="activity"></div>
+            <div id="activitystartA3" class="activity"></div>
+            <div id="activitystartA4" class="activity"></div>
+            <div class="timelinedrawA1" id="timelinedrawA1"></div>
+            <div class="timelinedrawA2" id="timelinedrawA2"></div>
+            <div class="timelinedrawA3" id="timelinedrawA3"></div>
+            <div class="timelinedrawA4" id="timelinedrawA4"></div>
+            <div class="timelinedrawA5" id="timelinedrawA5"></div>
+            <div class="timelinedrawA6" id="timelinedrawA6"></div>
+            <div class="timelinedrawA7" id="timelinedrawA7"></div>
+            <div class="timelinedrawA8" id="timelinedrawA8"></div>
+            <div class="timelinedrawA9" id="timelinedrawA9"></div>
+            <div class="timelinedrawA10" id="timelinedrawA10"></div>
+            <div class="timelinedrawA11" id="timelinedrawA11"></div>
+            <div class="timelinedrawA12" id="timelinedrawA12"></div>
+            <div class="timelinedrawA13" id="timelinedrawA13"></div>
+            <div class="timelinedrawA1num" id="timelinedrawA1num"></div>
+            <div class="timelinedrawA2num" id="timelinedrawA2num"></div>
+            <div class="timelinedrawA3num" id="timelinedrawA3num"></div>
+            <div class="timelinedrawA4num" id="timelinedrawA4num"></div>
+            <div class="timelinedrawA5num" id="timelinedrawA5num"></div>
+            <div class="timelinedrawA6num" id="timelinedrawA6num"></div>
+            <div class="timelinedrawA7num" id="timelinedrawA7num"></div>
+            <div class="timelinedrawA8num" id="timelinedrawA8num"></div>
+            <div class="timelinedrawA9num" id="timelinedrawA9num"></div>
+            <div class="timelinedrawA10num" id="timelinedrawA10num"></div>
+            <div class="timelinedrawA11num" id="timelinedrawA11num"></div>
+            <div class="timelinedrawA12num" id="timelinedrawA12num"></div>
+        </div>
+        <div class="timeline2" id="timeline2">
+            <div id="activitystartB1" class="activity"></div>
+            <div id="activitystartB2" class="activity"></div>
+            <div id="activitystartB3" class="activity"></div>
+            <div id="activitystartB4" class="activity"></div>
+            <div class="timelinedrawB1" id="timelinedrawB1"></div>
+            <div class="timelinedrawB2" id="timelinedrawB2"></div>
+            <div class="timelinedrawB3" id="timelinedrawB3"></div>
+            <div class="timelinedrawB4" id="timelinedrawB4"></div>
+            <div class="timelinedrawB5" id="timelinedrawB5"></div>
+            <div class="timelinedrawB6" id="timelinedrawB6"></div>
+            <div class="timelinedrawB7" id="timelinedrawB7"></div>
+            <div class="timelinedrawB8" id="timelinedrawB8"></div>
+            <div class="timelinedrawB9" id="timelinedrawB9"></div>
+            <div class="timelinedrawB10" id="timelinedrawB10"></div>
+            <div class="timelinedrawB11" id="timelinedrawB11"></div>
+            <div class="timelinedrawB12" id="timelinedrawB12"></div>
+            <div class="timelinedrawB13" id="timelinedrawB13"></div>
+            <div class="timelinedrawB1num" id="timelinedrawB1num"></div>
+            <div class="timelinedrawB2num" id="timelinedrawB2num"></div>
+            <div class="timelinedrawB3num" id="timelinedrawB3num"></div>
+            <div class="timelinedrawB4num" id="timelinedrawB4num"></div>
+            <div class="timelinedrawB5num" id="timelinedrawB5num"></div>
+            <div class="timelinedrawB6num" id="timelinedrawB6num"></div>
+            <div class="timelinedrawB7num" id="timelinedrawB7num"></div>
+            <div class="timelinedrawB8num" id="timelinedrawB8num"></div>
+            <div class="timelinedrawB9num" id="timelinedrawB9num"></div>
+            <div class="timelinedrawB10num" id="timelinedrawB10num"></div>
+            <div class="timelinedrawB11num" id="timelinedrawB11num"></div>
+            <div class="timelinedrawB12num" id="timelinedrawB12num"></div>
+        </div>
+        <div class="timeline3" id="timeline3">
+            <div id="activitystartC1" class="activity"></div>
+            <div id="activitystartC2" class="activity"></div>
+            <div id="activitystartC3" class="activity"></div>
+            <div id="activitystartC4" class="activity"></div>
+            <div class="timelinedrawC1" id="timelinedrawC1"></div>
+            <div class="timelinedrawC2" id="timelinedrawC2"></div>
+            <div class="timelinedrawC3" id="timelinedrawC3"></div>
+            <div class="timelinedrawC4" id="timelinedrawC4"></div>
+            <div class="timelinedrawC5" id="timelinedrawC5"></div>
+            <div class="timelinedrawC6" id="timelinedrawC6"></div>
+            <div class="timelinedrawC7" id="timelinedrawC7"></div>
+            <div class="timelinedrawC8" id="timelinedrawC8"></div>
+            <div class="timelinedrawC9" id="timelinedrawC9"></div>
+            <div class="timelinedrawC10" id="timelinedrawC10"></div>
+            <div class="timelinedrawC11" id="timelinedrawC11"></div>
+            <div class="timelinedrawC12" id="timelinedrawC12"></div>
+            <div class="timelinedrawC13" id="timelinedrawC13"></div>
+            <div class="timelinedrawC1num" id="timelinedrawC1num"></div>
+            <div class="timelinedrawC2num" id="timelinedrawC2num"></div>
+            <div class="timelinedrawC3num" id="timelinedrawC3num"></div>
+            <div class="timelinedrawC4num" id="timelinedrawC4num"></div>
+            <div class="timelinedrawC5num" id="timelinedrawC5num"></div>
+            <div class="timelinedrawC6num" id="timelinedrawC6num"></div>
+            <div class="timelinedrawC7num" id="timelinedrawC7num"></div>
+            <div class="timelinedrawC8num" id="timelinedrawC8num"></div>
+            <div class="timelinedrawC9num" id="timelinedrawC9num"></div>
+            <div class="timelinedrawC10num" id="timelinedrawC10num"></div>
+            <div class="timelinedrawC11num" id="timelinedrawC11num"></div>
+            <div class="timelinedrawC12num" id="timelinedrawC12num"></div>
+        </div>
+        <div class="timeline4" id="timeline4">
+            <div id="activitystartD1" class="activity"></div>
+            <div id="activitystartD2" class="activity"></div>
+            <div id="activitystartD3" class="activity"></div>
+            <div id="activitystartD4" class="activity"></div>
+            <div class="timelinedrawD1" id="timelinedrawD1"></div>
+            <div class="timelinedrawD2" id="timelinedrawD2"></div>
+            <div class="timelinedrawD3" id="timelinedrawD3"></div>
+            <div class="timelinedrawD4" id="timelinedrawD4"></div>
+            <div class="timelinedrawD5" id="timelinedrawD5"></div>
+            <div class="timelinedrawD6" id="timelinedrawD6"></div>
+            <div class="timelinedrawD7" id="timelinedrawD7"></div>
+            <div class="timelinedrawD8" id="timelinedrawD8"></div>
+            <div class="timelinedrawD9" id="timelinedrawD9"></div>
+            <div class="timelinedrawD10" id="timelinedrawD10"></div>
+            <div class="timelinedrawD11" id="timelinedrawD11"></div>
+            <div class="timelinedrawD12" id="timelinedrawD12"></div>
+            <div class="timelinedrawD13" id="timelinedrawD13"></div>
+            <div class="timelinedrawD1num" id="timelinedrawD1num"></div>
+            <div class="timelinedrawD2num" id="timelinedrawD2num"></div>
+            <div class="timelinedrawD3num" id="timelinedrawD3num"></div>
+            <div class="timelinedrawD4num" id="timelinedrawD4num"></div>
+            <div class="timelinedrawD5num" id="timelinedrawD5num"></div>
+            <div class="timelinedrawD6num" id="timelinedrawD6num"></div>
+            <div class="timelinedrawD7num" id="timelinedrawD7num"></div>
+            <div class="timelinedrawD8num" id="timelinedrawD8num"></div>
+            <div class="timelinedrawD9num" id="timelinedrawD9num"></div>
+            <div class="timelinedrawD10num" id="timelinedrawD10num"></div>
+            <div class="timelinedrawD11num" id="timelinedrawD11num"></div>
+            <div class="timelinedrawD12num" id="timelinedrawD12num"></div>
+        </div>
+        <div class="timeline5" id="timeline5">
+            <div id="activitystartE1" class="activity"></div>
+            <div id="activitystartE2" class="activity"></div>
+            <div id="activitystartE3" class="activity"></div>
+            <div id="activitystartE4" class="activity"></div>
+            <div class="timelinedrawE1" id="timelinedrawE1"></div>
+            <div class="timelinedrawE2" id="timelinedrawE2"></div>
+            <div class="timelinedrawE3" id="timelinedrawE3"></div>
+            <div class="timelinedrawE4" id="timelinedrawE4"></div>
+            <div class="timelinedrawE5" id="timelinedrawE5"></div>
+            <div class="timelinedrawE6" id="timelinedrawE6"></div>
+            <div class="timelinedrawE7" id="timelinedrawE7"></div>
+            <div class="timelinedrawE8" id="timelinedrawE8"></div>
+            <div class="timelinedrawE9" id="timelinedrawE9"></div>
+            <div class="timelinedrawE10" id="timelinedrawE10"></div>
+            <div class="timelinedrawE11" id="timelinedrawE11"></div>
+            <div class="timelinedrawE12" id="timelinedrawE12"></div>
+            <div class="timelinedrawE13" id="timelinedrawE13"></div>
+            <div class="timelinedrawE1num" id="timelinedrawE1num"></div>
+            <div class="timelinedrawE2num" id="timelinedrawE2num"></div>
+            <div class="timelinedrawE3num" id="timelinedrawE3num"></div>
+            <div class="timelinedrawE4num" id="timelinedrawE4num"></div>
+            <div class="timelinedrawE5num" id="timelinedrawE5num"></div>
+            <div class="timelinedrawE6num" id="timelinedrawE6num"></div>
+            <div class="timelinedrawE7num" id="timelinedrawE7num"></div>
+            <div class="timelinedrawE8num" id="timelinedrawE8num"></div>
+            <div class="timelinedrawE9num" id="timelinedrawE9num"></div>
+            <div class="timelinedrawE10num" id="timelinedrawE10num"></div>
+            <div class="timelinedrawE11num" id="timelinedrawE11num"></div>
+            <div class="timelinedrawE12num" id="timelinedrawE12num"></div>
+        </div>
+        <div class="timeline6" id="timeline6">
+            <div id="activitystartF1" class="activity"></div>
+            <div id="activitystartF2" class="activity"></div>
+            <div id="activitystartF3" class="activity"></div>
+            <div id="activitystartF4" class="activity"></div>
+            <div class="timelinedrawF1" id="timelinedrawF1"></div>
+            <div class="timelinedrawF2" id="timelinedrawF2"></div>
+            <div class="timelinedrawF3" id="timelinedrawF3"></div>
+            <div class="timelinedrawF4" id="timelinedrawF4"></div>
+            <div class="timelinedrawF5" id="timelinedrawF5"></div>
+            <div class="timelinedrawF6" id="timelinedrawF6"></div>
+            <div class="timelinedrawF7" id="timelinedrawF7"></div>
+            <div class="timelinedrawF8" id="timelinedrawF8"></div>
+            <div class="timelinedrawF9" id="timelinedrawF9"></div>
+            <div class="timelinedrawF10" id="timelinedrawF10"></div>
+            <div class="timelinedrawF11" id="timelinedrawF11"></div>
+            <div class="timelinedrawF12" id="timelinedrawF12"></div>
+            <div class="timelinedrawF13" id="timelinedrawF13"></div>
+            <div class="timelinedrawF1num" id="timelinedrawF1num"></div>
+            <div class="timelinedrawF2num" id="timelinedrawF2num"></div>
+            <div class="timelinedrawF3num" id="timelinedrawF3num"></div>
+            <div class="timelinedrawF4num" id="timelinedrawF4num"></div>
+            <div class="timelinedrawF5num" id="timelinedrawF5num"></div>
+            <div class="timelinedrawF6num" id="timelinedrawF6num"></div>
+            <div class="timelinedrawF7num" id="timelinedrawF7num"></div>
+            <div class="timelinedrawF8num" id="timelinedrawF8num"></div>
+            <div class="timelinedrawF9num" id="timelinedrawF9num"></div>
+            <div class="timelinedrawF10num" id="timelinedrawF10num"></div>
+            <div class="timelinedrawF11num" id="timelinedrawF11num"></div>
+            <div class="timelinedrawF12num" id="timelinedrawF12num"></div>
+        </div>
+        <div class="timeline7" id="timeline7">
+            <div id="activitystartG1" class="activity"></div>
+            <div id="activitystartG2" class="activity"></div>
+            <div id="activitystartG3" class="activity"></div>
+            <div id="activitystartG4" class="activity"></div>
+            <div class="timelinedrawG1" id="timelinedrawG1"></div>
+            <div class="timelinedrawG2" id="timelinedrawG2"></div>
+            <div class="timelinedrawG3" id="timelinedrawG3"></div>
+            <div class="timelinedrawG4" id="timelinedrawG4"></div>
+            <div class="timelinedrawG5" id="timelinedrawG5"></div>
+            <div class="timelinedrawG6" id="timelinedrawG6"></div>
+            <div class="timelinedrawG7" id="timelinedrawG7"></div>
+            <div class="timelinedrawG8" id="timelinedrawG8"></div>
+            <div class="timelinedrawG9" id="timelinedrawG9"></div>
+            <div class="timelinedrawG10" id="timelinedrawG10"></div>
+            <div class="timelinedrawG11" id="timelinedrawG11"></div>
+            <div class="timelinedrawG12" id="timelinedrawG12"></div>
+            <div class="timelinedrawG13" id="timelinedrawG13"></div>
+            <div class="timelinedrawG1num" id="timelinedrawG1num"></div>
+            <div class="timelinedrawG2num" id="timelinedrawG2num"></div>
+            <div class="timelinedrawG3num" id="timelinedrawG3num"></div>
+            <div class="timelinedrawG4num" id="timelinedrawG4num"></div>
+            <div class="timelinedrawG5num" id="timelinedrawG5num"></div>
+            <div class="timelinedrawG6num" id="timelinedrawG6num"></div>
+            <div class="timelinedrawG7num" id="timelinedrawG7num"></div>
+            <div class="timelinedrawG8num" id="timelinedrawG8num"></div>
+            <div class="timelinedrawG9num" id="timelinedrawG9num"></div>
+            <div class="timelinedrawG10num" id="timelinedrawG10num"></div>
+            <div class="timelinedrawG11num" id="timelinedrawG11num"></div>
+            <div class="timelinedrawG12num" id="timelinedrawG12num"></div>
+        </div>
+        <div class="timeline8" id="timeline8">
+            <div id="activitystartH1" class="activity"></div>
+            <div id="activitystartH2" class="activity"></div>
+            <div id="activitystartH3" class="activity"></div>
+            <div id="activitystartH4" class="activity"></div>
+            <div class="timelinedrawH1" id="timelinedrawH1"></div>
+            <div class="timelinedrawH2" id="timelinedrawH2"></div>
+            <div class="timelinedrawH3" id="timelinedrawH3"></div>
+            <div class="timelinedrawH4" id="timelinedrawH4"></div>
+            <div class="timelinedrawH5" id="timelinedrawH5"></div>
+            <div class="timelinedrawH6" id="timelinedrawH6"></div>
+            <div class="timelinedrawH7" id="timelinedrawH7"></div>
+            <div class="timelinedrawH8" id="timelinedrawH8"></div>
+            <div class="timelinedrawH9" id="timelinedrawH9"></div>
+            <div class="timelinedrawH10" id="timelinedrawH10"></div>
+            <div class="timelinedrawH11" id="timelinedrawH11"></div>
+            <div class="timelinedrawH12" id="timelinedrawH12"></div>
+            <div class="timelinedrawH13" id="timelinedrawH13"></div>
+            <div class="timelinedrawH1num" id="timelinedrawH1num"></div>
+            <div class="timelinedrawH2num" id="timelinedrawH2num"></div>
+            <div class="timelinedrawH3num" id="timelinedrawH3num"></div>
+            <div class="timelinedrawH4num" id="timelinedrawH4num"></div>
+            <div class="timelinedrawH5num" id="timelinedrawH5num"></div>
+            <div class="timelinedrawH6num" id="timelinedrawH6num"></div>
+            <div class="timelinedrawH7num" id="timelinedrawH7num"></div>
+            <div class="timelinedrawH8num" id="timelinedrawH8num"></div>
+            <div class="timelinedrawH9num" id="timelinedrawH9num"></div>
+            <div class="timelinedrawH10num" id="timelinedrawH10num"></div>
+            <div class="timelinedrawH11num" id="timelinedrawH11num"></div>
+            <div class="timelinedrawH12num" id="timelinedrawH12num"></div>
+        </div>
+        <div class="timeline9" id="timeline9">
+            <div id="activitystartI1" class="activity"></div>
+            <div id="activitystartI2" class="activity"></div>
+            <div id="activitystartI3" class="activity"></div>
+            <div id="activitystartI4" class="activity"></div>
+            <div class="timelinedrawI1" id="timelinedrawI1"></div>
+            <div class="timelinedrawI2" id="timelinedrawI2"></div>
+            <div class="timelinedrawI3" id="timelinedrawI3"></div>
+            <div class="timelinedrawI4" id="timelinedrawI4"></div>
+            <div class="timelinedrawI5" id="timelinedrawI5"></div>
+            <div class="timelinedrawI6" id="timelinedrawI6"></div>
+            <div class="timelinedrawI7" id="timelinedrawI7"></div>
+            <div class="timelinedrawI8" id="timelinedrawI8"></div>
+            <div class="timelinedrawI9" id="timelinedrawI9"></div>
+            <div class="timelinedrawI10" id="timelinedrawI10"></div>
+            <div class="timelinedrawI11" id="timelinedrawI11"></div>
+            <div class="timelinedrawI12" id="timelinedrawI12"></div>
+            <div class="timelinedrawI13" id="timelinedrawI13"></div>
+            <div class="timelinedrawI1num" id="timelinedrawI1num"></div>
+            <div class="timelinedrawI2num" id="timelinedrawI2num"></div>
+            <div class="timelinedrawI3num" id="timelinedrawI3num"></div>
+            <div class="timelinedrawI4num" id="timelinedrawI4num"></div>
+            <div class="timelinedrawI5num" id="timelinedrawI5num"></div>
+            <div class="timelinedrawI6num" id="timelinedrawI6num"></div>
+            <div class="timelinedrawI7num" id="timelinedrawI7num"></div>
+            <div class="timelinedrawI8num" id="timelinedrawI8num"></div>
+            <div class="timelinedrawI9num" id="timelinedrawI9num"></div>
+            <div class="timelinedrawI10num" id="timelinedrawI10num"></div>
+            <div class="timelinedrawI11num" id="timelinedrawI11num"></div>
+            <div class="timelinedrawI12num" id="timelinedrawI12num"></div>
+        </div>
+        <div class="timeline10" id="timeline10">
+            <div id="activitystartJ1" class="activity"></div>
+            <div id="activitystartJ2" class="activity"></div>
+            <div id="activitystartJ3" class="activity"></div>
+            <div id="activitystartJ4" class="activity"></div>
+            <div class="timelinedrawJ1" id="timelinedrawJ1"></div>
+            <div class="timelinedrawJ2" id="timelinedrawJ2"></div>
+            <div class="timelinedrawJ3" id="timelinedrawJ3"></div>
+            <div class="timelinedrawJ4" id="timelinedrawJ4"></div>
+            <div class="timelinedrawJ5" id="timelinedrawJ5"></div>
+            <div class="timelinedrawJ6" id="timelinedrawJ6"></div>
+            <div class="timelinedrawJ7" id="timelinedrawJ7"></div>
+            <div class="timelinedrawJ8" id="timelinedrawJ8"></div>
+            <div class="timelinedrawJ9" id="timelinedrawJ9"></div>
+            <div class="timelinedrawJ10" id="timelinedrawJ10"></div>
+            <div class="timelinedrawJ11" id="timelinedrawJ11"></div>
+            <div class="timelinedrawJ12" id="timelinedrawJ12"></div>
+            <div class="timelinedrawJ13" id="timelinedrawJ13"></div>
+            <div class="timelinedrawJ1num" id="timelinedrawJ1num"></div>
+            <div class="timelinedrawJ2num" id="timelinedrawJ2num"></div>
+            <div class="timelinedrawJ3num" id="timelinedrawJ3num"></div>
+            <div class="timelinedrawJ4num" id="timelinedrawJ4num"></div>
+            <div class="timelinedrawJ5num" id="timelinedrawJ5num"></div>
+            <div class="timelinedrawJ6num" id="timelinedrawJ6num"></div>
+            <div class="timelinedrawJ7num" id="timelinedrawJ7num"></div>
+            <div class="timelinedrawJ8num" id="timelinedrawJ8num"></div>
+            <div class="timelinedrawJ9num" id="timelinedrawJ9num"></div>
+            <div class="timelinedrawJ10num" id="timelinedrawJ10num"></div>
+            <div class="timelinedrawJ11num" id="timelinedrawJ11num"></div>
+            <div class="timelinedrawJ12num" id="timelinedrawJ12num"></div>
+        </div>
+        <div class="timeline11" id="timeline11">
+            <div id="activitystartK1" class="activity"></div>
+            <div id="activitystartK2" class="activity"></div>
+            <div id="activitystartK3" class="activity"></div>
+            <div id="activitystartK4" class="activity"></div>
+            <div class="timelinedrawK1" id="timelinedrawK1"></div>
+            <div class="timelinedrawK2" id="timelinedrawK2"></div>
+            <div class="timelinedrawK3" id="timelinedrawK3"></div>
+            <div class="timelinedrawK4" id="timelinedrawK4"></div>
+            <div class="timelinedrawK5" id="timelinedrawK5"></div>
+            <div class="timelinedrawK6" id="timelinedrawK6"></div>
+            <div class="timelinedrawK7" id="timelinedrawK7"></div>
+            <div class="timelinedrawK8" id="timelinedrawK8"></div>
+            <div class="timelinedrawK9" id="timelinedrawK9"></div>
+            <div class="timelinedrawK10" id="timelinedrawK10"></div>
+            <div class="timelinedrawK11" id="timelinedrawK11"></div>
+            <div class="timelinedrawK12" id="timelinedrawK12"></div>
+            <div class="timelinedrawK13" id="timelinedrawK13"></div>
+            <div class="timelinedrawK1num" id="timelinedrawK1num"></div>
+            <div class="timelinedrawK2num" id="timelinedrawK2num"></div>
+            <div class="timelinedrawK3num" id="timelinedrawK3num"></div>
+            <div class="timelinedrawK4num" id="timelinedrawK4num"></div>
+            <div class="timelinedrawK5num" id="timelinedrawK5num"></div>
+            <div class="timelinedrawK6num" id="timelinedrawK6num"></div>
+            <div class="timelinedrawK7num" id="timelinedrawK7num"></div>
+            <div class="timelinedrawK8num" id="timelinedrawK8num"></div>
+            <div class="timelinedrawK9num" id="timelinedrawK9num"></div>
+            <div class="timelinedrawK10num" id="timelinedrawK10num"></div>
+            <div class="timelinedrawK11num" id="timelinedrawK11num"></div>
+            <div class="timelinedrawK12num" id="timelinedrawK12num"></div>
+        </div>
+        <div class="timeline12" id="timeline12">
+            <div id="activitystartL1" class="activity"></div>
+            <div id="activitystartL2" class="activity"></div>
+            <div id="activitystartL3" class="activity"></div>
+            <div id="activitystartL4" class="activity"></div>
+            <div class="timelinedrawL1" id="timelinedrawL1"></div>
+            <div class="timelinedrawL2" id="timelinedrawL2"></div>
+            <div class="timelinedrawL3" id="timelinedrawL3"></div>
+            <div class="timelinedrawL4" id="timelinedrawL4"></div>
+            <div class="timelinedrawL5" id="timelinedrawL5"></div>
+            <div class="timelinedrawL6" id="timelinedrawL6"></div>
+            <div class="timelinedrawL7" id="timelinedrawL7"></div>
+            <div class="timelinedrawL8" id="timelinedrawL8"></div>
+            <div class="timelinedrawL9" id="timelinedrawL9"></div>
+            <div class="timelinedrawL10" id="timelinedrawL10"></div>
+            <div class="timelinedrawL11" id="timelinedrawL11"></div>
+            <div class="timelinedrawL12" id="timelinedrawL12"></div>
+            <div class="timelinedrawL13" id="timelinedrawL13"></div>
+            <div class="timelinedrawL1num" id="timelinedrawL1num"></div>
+            <div class="timelinedrawL2num" id="timelinedrawL2num"></div>
+            <div class="timelinedrawL3num" id="timelinedrawL3num"></div>
+            <div class="timelinedrawL4num" id="timelinedrawL4num"></div>
+            <div class="timelinedrawL5num" id="timelinedrawL5num"></div>
+            <div class="timelinedrawL6num" id="timelinedrawL6num"></div>
+            <div class="timelinedrawL7num" id="timelinedrawL7num"></div>
+            <div class="timelinedrawL8num" id="timelinedrawL8num"></div>
+            <div class="timelinedrawL9num" id="timelinedrawL9num"></div>
+            <div class="timelinedrawL10num" id="timelinedrawL10num"></div>
+            <div class="timelinedrawL11num" id="timelinedrawL11num"></div>
+            <div class="timelinedrawL12num" id="timelinedrawL12num"></div>
+        </div>
+        <div class="timeline13" id="timeline13">
+            <div id="activitystartM1" class="activity"></div>
+            <div id="activitystartM2" class="activity"></div>
+            <div id="activitystartM3" class="activity"></div>
+            <div id="activitystartM4" class="activity"></div>
+            <div class="timelinedrawM1" id="timelinedrawM1"></div>
+            <div class="timelinedrawM2" id="timelinedrawM2"></div>
+            <div class="timelinedrawM3" id="timelinedrawM3"></div>
+            <div class="timelinedrawM4" id="timelinedrawM4"></div>
+            <div class="timelinedrawM5" id="timelinedrawM5"></div>
+            <div class="timelinedrawM6" id="timelinedrawM6"></div>
+            <div class="timelinedrawM7" id="timelinedrawM7"></div>
+            <div class="timelinedrawM8" id="timelinedrawM8"></div>
+            <div class="timelinedrawM9" id="timelinedrawM9"></div>
+            <div class="timelinedrawM10" id="timelinedrawM10"></div>
+            <div class="timelinedrawM11" id="timelinedrawM11"></div>
+            <div class="timelinedrawM12" id="timelinedrawM12"></div>
+            <div class="timelinedrawM13" id="timelinedrawM13"></div>
+            <div class="timelinedrawM1num" id="timelinedrawM1num"></div>
+            <div class="timelinedrawM2num" id="timelinedrawM2num"></div>
+            <div class="timelinedrawM3num" id="timelinedrawM3num"></div>
+            <div class="timelinedrawM4num" id="timelinedrawM4num"></div>
+            <div class="timelinedrawM5num" id="timelinedrawM5num"></div>
+            <div class="timelinedrawM6num" id="timelinedrawM6num"></div>
+            <div class="timelinedrawM7num" id="timelinedrawM7num"></div>
+            <div class="timelinedrawM8num" id="timelinedrawM8num"></div>
+            <div class="timelinedrawM9num" id="timelinedrawM9num"></div>
+            <div class="timelinedrawM10num" id="timelinedrawM10num"></div>
+            <div class="timelinedrawM11num" id="timelinedrawM11num"></div>
+            <div class="timelinedrawM12num" id="timelinedrawM12num"></div>
+        </div>
+        <div class="timeline14" id="timeline14">
+            <div id="activitystartN1" class="activity"></div>
+            <div id="activitystartN2" class="activity"></div>
+            <div id="activitystartN3" class="activity"></div>
+            <div id="activitystartN4" class="activity"></div>
+            <div class="timelinedrawN1" id="timelinedrawN1"></div>
+            <div class="timelinedrawN2" id="timelinedrawN2"></div>
+            <div class="timelinedrawN3" id="timelinedrawN3"></div>
+            <div class="timelinedrawN4" id="timelinedrawN4"></div>
+            <div class="timelinedrawN5" id="timelinedrawN5"></div>
+            <div class="timelinedrawN6" id="timelinedrawN6"></div>
+            <div class="timelinedrawN7" id="timelinedrawN7"></div>
+            <div class="timelinedrawN8" id="timelinedrawN8"></div>
+            <div class="timelinedrawN9" id="timelinedrawN9"></div>
+            <div class="timelinedrawN10" id="timelinedrawN10"></div>
+            <div class="timelinedrawN11" id="timelinedrawN11"></div>
+            <div class="timelinedrawN12" id="timelinedrawN12"></div>
+            <div class="timelinedrawN13" id="timelinedrawN13"></div>
+            <div class="timelinedrawN1num" id="timelinedrawN1num"></div>
+            <div class="timelinedrawN2num" id="timelinedrawN2num"></div>
+            <div class="timelinedrawN3num" id="timelinedrawN3num"></div>
+            <div class="timelinedrawN4num" id="timelinedrawN4num"></div>
+            <div class="timelinedrawN5num" id="timelinedrawN5num"></div>
+            <div class="timelinedrawN6num" id="timelinedrawN6num"></div>
+            <div class="timelinedrawN7num" id="timelinedrawN7num"></div>
+            <div class="timelinedrawN8num" id="timelinedrawN8num"></div>
+            <div class="timelinedrawN9num" id="timelinedrawN9num"></div>
+            <div class="timelinedrawN10num" id="timelinedrawN10num"></div>
+            <div class="timelinedrawN11num" id="timelinedrawN11num"></div>
+            <div class="timelinedrawN12num" id="timelinedrawN12num"></div>
+        </div>
+        <div class="timeline15" id="timeline15">
+            <div id="activitystartO1" class="activity"></div>
+            <div id="activitystartO2" class="activity"></div>
+            <div id="activitystartO3" class="activity"></div>
+            <div id="activitystartO4" class="activity"></div>
+            <div class="timelinedrawO1" id="timelinedrawO1"></div>
+            <div class="timelinedrawO2" id="timelinedrawO2"></div>
+            <div class="timelinedrawO3" id="timelinedrawO3"></div>
+            <div class="timelinedrawO4" id="timelinedrawO4"></div>
+            <div class="timelinedrawO5" id="timelinedrawO5"></div>
+            <div class="timelinedrawO6" id="timelinedrawO6"></div>
+            <div class="timelinedrawO7" id="timelinedrawO7"></div>
+            <div class="timelinedrawO8" id="timelinedrawO8"></div>
+            <div class="timelinedrawO9" id="timelinedrawO9"></div>
+            <div class="timelinedrawO10" id="timelinedrawO10"></div>
+            <div class="timelinedrawO11" id="timelinedrawO11"></div>
+            <div class="timelinedrawO12" id="timelinedrawO12"></div>
+            <div class="timelinedrawO13" id="timelinedrawO13"></div>
+            <div class="timelinedrawO1num" id="timelinedrawO1num"></div>
+            <div class="timelinedrawO2num" id="timelinedrawO2num"></div>
+            <div class="timelinedrawO3num" id="timelinedrawO3num"></div>
+            <div class="timelinedrawO4num" id="timelinedrawO4num"></div>
+            <div class="timelinedrawO5num" id="timelinedrawO5num"></div>
+            <div class="timelinedrawO6num" id="timelinedrawO6num"></div>
+            <div class="timelinedrawO7num" id="timelinedrawO7num"></div>
+            <div class="timelinedrawO8num" id="timelinedrawO8num"></div>
+            <div class="timelinedrawO9num" id="timelinedrawO9num"></div>
+            <div class="timelinedrawO10num" id="timelinedrawO10num"></div>
+            <div class="timelinedrawO11num" id="timelinedrawO11num"></div>
+            <div class="timelinedrawO12num" id="timelinedrawO12num"></div>
+        </div>
+        <div class="timeline16" id="timeline16">
+            <div id="activitystartP1" class="activity"></div>
+            <div id="activitystartP2" class="activity"></div>
+            <div id="activitystartP3" class="activity"></div>
+            <div id="activitystartP4" class="activity"></div>
+            <div class="timelinedrawP1" id="timelinedrawP1"></div>
+            <div class="timelinedrawP2" id="timelinedrawP2"></div>
+            <div class="timelinedrawP3" id="timelinedrawP3"></div>
+            <div class="timelinedrawP4" id="timelinedrawP4"></div>
+            <div class="timelinedrawP5" id="timelinedrawP5"></div>
+            <div class="timelinedrawP6" id="timelinedrawP6"></div>
+            <div class="timelinedrawP7" id="timelinedrawP7"></div>
+            <div class="timelinedrawP8" id="timelinedrawP8"></div>
+            <div class="timelinedrawP9" id="timelinedrawP9"></div>
+            <div class="timelinedrawP10" id="timelinedrawP10"></div>
+            <div class="timelinedrawP11" id="timelinedrawP11"></div>
+            <div class="timelinedrawP12" id="timelinedrawP12"></div>
+            <div class="timelinedrawP13" id="timelinedrawP13"></div>
+            <div class="timelinedrawP1num" id="timelinedrawP1num"></div>
+            <div class="timelinedrawP2num" id="timelinedrawP2num"></div>
+            <div class="timelinedrawP3num" id="timelinedrawP3num"></div>
+            <div class="timelinedrawP4num" id="timelinedrawP4num"></div>
+            <div class="timelinedrawP5num" id="timelinedrawP5num"></div>
+            <div class="timelinedrawP6num" id="timelinedrawP6num"></div>
+            <div class="timelinedrawP7num" id="timelinedrawP7num"></div>
+            <div class="timelinedrawP8num" id="timelinedrawP8num"></div>
+            <div class="timelinedrawP9num" id="timelinedrawP9num"></div>
+            <div class="timelinedrawP10num" id="timelinedrawP10num"></div>
+            <div class="timelinedrawP11num" id="timelinedrawP11num"></div>
+            <div class="timelinedrawP12num" id="timelinedrawP12num"></div>
+        </div>
+        <div class="timeline17" id="timeline17">
+            <div id="activitystartQ1" class="activity"></div>
+            <div id="activitystartQ2" class="activity"></div>
+            <div id="activitystartQ3" class="activity"></div>
+            <div id="activitystartQ4" class="activity"></div>
+            <div class="timelinedrawQ1" id="timelinedrawQ1"></div>
+            <div class="timelinedrawQ2" id="timelinedrawQ2"></div>
+            <div class="timelinedrawQ3" id="timelinedrawQ3"></div>
+            <div class="timelinedrawQ4" id="timelinedrawQ4"></div>
+            <div class="timelinedrawQ5" id="timelinedrawQ5"></div>
+            <div class="timelinedrawQ6" id="timelinedrawQ6"></div>
+            <div class="timelinedrawQ7" id="timelinedrawQ7"></div>
+            <div class="timelinedrawQ8" id="timelinedrawQ8"></div>
+            <div class="timelinedrawQ9" id="timelinedrawQ9"></div>
+            <div class="timelinedrawQ10" id="timelinedrawQ10"></div>
+            <div class="timelinedrawQ11" id="timelinedrawQ11"></div>
+            <div class="timelinedrawQ12" id="timelinedrawQ12"></div>
+            <div class="timelinedrawQ13" id="timelinedrawQ13"></div>
+            <div class="timelinedrawQ1num" id="timelinedrawQ1num"></div>
+            <div class="timelinedrawQ2num" id="timelinedrawQ2num"></div>
+            <div class="timelinedrawQ3num" id="timelinedrawQ3num"></div>
+            <div class="timelinedrawQ4num" id="timelinedrawQ4num"></div>
+            <div class="timelinedrawQ5num" id="timelinedrawQ5num"></div>
+            <div class="timelinedrawQ6num" id="timelinedrawQ6num"></div>
+            <div class="timelinedrawQ7num" id="timelinedrawQ7num"></div>
+            <div class="timelinedrawQ8num" id="timelinedrawQ8num"></div>
+            <div class="timelinedrawQ9num" id="timelinedrawQ9num"></div>
+            <div class="timelinedrawQ10num" id="timelinedrawQ10num"></div>
+            <div class="timelinedrawQ11num" id="timelinedrawQ11num"></div>
+            <div class="timelinedrawQ12num" id="timelinedrawQ12num"></div>
+        </div>
+        <div class="timeline18" id="timeline18">
+            <div id="activitystartR1" class="activity"></div>
+            <div id="activitystartR2" class="activity"></div>
+            <div id="activitystartR3" class="activity"></div>
+            <div id="activitystartR4" class="activity"></div>
+            <div class="timelinedrawR1" id="timelinedrawR1"></div>
+            <div class="timelinedrawR2" id="timelinedrawR2"></div>
+            <div class="timelinedrawR3" id="timelinedrawR3"></div>
+            <div class="timelinedrawR4" id="timelinedrawR4"></div>
+            <div class="timelinedrawR5" id="timelinedrawR5"></div>
+            <div class="timelinedrawR6" id="timelinedrawR6"></div>
+            <div class="timelinedrawR7" id="timelinedrawR7"></div>
+            <div class="timelinedrawR8" id="timelinedrawR8"></div>
+            <div class="timelinedrawR9" id="timelinedrawR9"></div>
+            <div class="timelinedrawR10" id="timelinedrawR10"></div>
+            <div class="timelinedrawR11" id="timelinedrawR11"></div>
+            <div class="timelinedrawR12" id="timelinedrawR12"></div>
+            <div class="timelinedrawR13" id="timelinedrawR13"></div>
+            <div class="timelinedrawR1num" id="timelinedrawR1num"></div>
+            <div class="timelinedrawR2num" id="timelinedrawR2num"></div>
+            <div class="timelinedrawR3num" id="timelinedrawR3num"></div>
+            <div class="timelinedrawR4num" id="timelinedrawR4num"></div>
+            <div class="timelinedrawR5num" id="timelinedrawR5num"></div>
+            <div class="timelinedrawR6num" id="timelinedrawR6num"></div>
+            <div class="timelinedrawR7num" id="timelinedrawR7num"></div>
+            <div class="timelinedrawR8num" id="timelinedrawR8num"></div>
+            <div class="timelinedrawR9num" id="timelinedrawR9num"></div>
+            <div class="timelinedrawR10num" id="timelinedrawR10num"></div>
+            <div class="timelinedrawR11num" id="timelinedrawR11num"></div>
+            <div class="timelinedrawR12num" id="timelinedrawR12num"></div>
+        </div>
+        <div class="timeline19" id="timeline19">
+            <div id="activitystartS1" class="activity"></div>
+            <div id="activitystartS2" class="activity"></div>
+            <div id="activitystartS3" class="activity"></div>
+            <div id="activitystartS4" class="activity"></div>
+            <div class="timelinedrawS1" id="timelinedrawS1"></div>
+            <div class="timelinedrawS2" id="timelinedrawS2"></div>
+            <div class="timelinedrawS3" id="timelinedrawS3"></div>
+            <div class="timelinedrawS4" id="timelinedrawS4"></div>
+            <div class="timelinedrawS5" id="timelinedrawS5"></div>
+            <div class="timelinedrawS6" id="timelinedrawS6"></div>
+            <div class="timelinedrawS7" id="timelinedrawS7"></div>
+            <div class="timelinedrawS8" id="timelinedrawS8"></div>
+            <div class="timelinedrawS9" id="timelinedrawS9"></div>
+            <div class="timelinedrawS10" id="timelinedrawS10"></div>
+            <div class="timelinedrawS11" id="timelinedrawS11"></div>
+            <div class="timelinedrawS12" id="timelinedrawS12"></div>
+            <div class="timelinedrawS13" id="timelinedrawS13"></div>
+            <div class="timelinedrawS1num" id="timelinedrawS1num"></div>
+            <div class="timelinedrawS2num" id="timelinedrawS2num"></div>
+            <div class="timelinedrawS3num" id="timelinedrawS3num"></div>
+            <div class="timelinedrawS4num" id="timelinedrawS4num"></div>
+            <div class="timelinedrawS5num" id="timelinedrawS5num"></div>
+            <div class="timelinedrawS6num" id="timelinedrawS6num"></div>
+            <div class="timelinedrawS7num" id="timelinedrawS7num"></div>
+            <div class="timelinedrawS8num" id="timelinedrawS8num"></div>
+            <div class="timelinedrawS9num" id="timelinedrawS9num"></div>
+            <div class="timelinedrawS10num" id="timelinedrawS10num"></div>
+            <div class="timelinedrawS11num" id="timelinedrawS11num"></div>
+            <div class="timelinedrawS12num" id="timelinedrawS12num"></div>
+        </div>
+        <div class="timeline20" id="timeline20">
+            <div id="activitystartT1" class="activity"></div>
+            <div id="activitystartT2" class="activity"></div>
+            <div id="activitystartT3" class="activity"></div>
+            <div id="activitystartT4" class="activity"></div>
+            <div class="timelinedrawT1" id="timelinedrawT1"></div>
+            <div class="timelinedrawT2" id="timelinedrawT2"></div>
+            <div class="timelinedrawT3" id="timelinedrawT3"></div>
+            <div class="timelinedrawT4" id="timelinedrawT4"></div>
+            <div class="timelinedrawT5" id="timelinedrawT5"></div>
+            <div class="timelinedrawT6" id="timelinedrawT6"></div>
+            <div class="timelinedrawT7" id="timelinedrawT7"></div>
+            <div class="timelinedrawT8" id="timelinedrawT8"></div>
+            <div class="timelinedrawT9" id="timelinedrawT9"></div>
+            <div class="timelinedrawT10" id="timelinedrawT10"></div>
+            <div class="timelinedrawT11" id="timelinedrawT11"></div>
+            <div class="timelinedrawT12" id="timelinedrawT12"></div>
+            <div class="timelinedrawT13" id="timelinedrawT13"></div>
+            <div class="timelinedrawT1num" id="timelinedrawT1num"></div>
+            <div class="timelinedrawT2num" id="timelinedrawT2num"></div>
+            <div class="timelinedrawT3num" id="timelinedrawT3num"></div>
+            <div class="timelinedrawT4num" id="timelinedrawT4num"></div>
+            <div class="timelinedrawT5num" id="timelinedrawT5num"></div>
+            <div class="timelinedrawT6num" id="timelinedrawT6num"></div>
+            <div class="timelinedrawT7num" id="timelinedrawT7num"></div>
+            <div class="timelinedrawT8num" id="timelinedrawT8num"></div>
+            <div class="timelinedrawT9num" id="timelinedrawT9num"></div>
+            <div class="timelinedrawT10num" id="timelinedrawT10num"></div>
+            <div class="timelinedrawT11num" id="timelinedrawT11num"></div>
+            <div class="timelinedrawT12num" id="timelinedrawT12num"></div>
+        </div>
+        <div class="timeline21" id="timeline21">
+            <div id="activitystartU1" class="activity"></div>
+            <div id="activitystartU2" class="activity"></div>
+            <div id="activitystartU3" class="activity"></div>
+            <div id="activitystartU4" class="activity"></div>
+            <div class="timelinedrawU1" id="timelinedrawU1"></div>
+            <div class="timelinedrawU2" id="timelinedrawU2"></div>
+            <div class="timelinedrawU3" id="timelinedrawU3"></div>
+            <div class="timelinedrawU4" id="timelinedrawU4"></div>
+            <div class="timelinedrawU5" id="timelinedrawU5"></div>
+            <div class="timelinedrawU6" id="timelinedrawU6"></div>
+            <div class="timelinedrawU7" id="timelinedrawU7"></div>
+            <div class="timelinedrawU8" id="timelinedrawU8"></div>
+            <div class="timelinedrawU9" id="timelinedrawU9"></div>
+            <div class="timelinedrawU10" id="timelinedrawU10"></div>
+            <div class="timelinedrawU11" id="timelinedrawU11"></div>
+            <div class="timelinedrawU12" id="timelinedrawU12"></div>
+            <div class="timelinedrawU13" id="timelinedrawU13"></div>
+            <div class="timelinedrawU1num" id="timelinedrawU1num"></div>
+            <div class="timelinedrawU2num" id="timelinedrawU2num"></div>
+            <div class="timelinedrawU3num" id="timelinedrawU3num"></div>
+            <div class="timelinedrawU4num" id="timelinedrawU4num"></div>
+            <div class="timelinedrawU5num" id="timelinedrawU5num"></div>
+            <div class="timelinedrawU6num" id="timelinedrawU6num"></div>
+            <div class="timelinedrawU7num" id="timelinedrawU7num"></div>
+            <div class="timelinedrawU8num" id="timelinedrawU8num"></div>
+            <div class="timelinedrawU9num" id="timelinedrawU9num"></div>
+            <div class="timelinedrawU10num" id="timelinedrawU10num"></div>
+            <div class="timelinedrawU11num" id="timelinedrawU11num"></div>
+            <div class="timelinedrawU12num" id="timelinedrawU12num"></div>
+        </div>
+        <div class="timeline22" id="timeline22">
+            <div id="activitystartV1" class="activity"></div>
+            <div id="activitystartV2" class="activity"></div>
+            <div id="activitystartV3" class="activity"></div>
+            <div id="activitystartV4" class="activity"></div>
+            <div class="timelinedrawV1" id="timelinedrawV1"></div>
+            <div class="timelinedrawV2" id="timelinedrawV2"></div>
+            <div class="timelinedrawV3" id="timelinedrawV3"></div>
+            <div class="timelinedrawV4" id="timelinedrawV4"></div>
+            <div class="timelinedrawV5" id="timelinedrawV5"></div>
+            <div class="timelinedrawV6" id="timelinedrawV6"></div>
+            <div class="timelinedrawV7" id="timelinedrawV7"></div>
+            <div class="timelinedrawV8" id="timelinedrawV8"></div>
+            <div class="timelinedrawV9" id="timelinedrawV9"></div>
+            <div class="timelinedrawV10" id="timelinedrawV10"></div>
+            <div class="timelinedrawV11" id="timelinedrawV11"></div>
+            <div class="timelinedrawV12" id="timelinedrawV12"></div>
+            <div class="timelinedrawV13" id="timelinedrawV13"></div>
+            <div class="timelinedrawV1num" id="timelinedrawV1num"></div>
+            <div class="timelinedrawV2num" id="timelinedrawV2num"></div>
+            <div class="timelinedrawV3num" id="timelinedrawV3num"></div>
+            <div class="timelinedrawV4num" id="timelinedrawV4num"></div>
+            <div class="timelinedrawV5num" id="timelinedrawV5num"></div>
+            <div class="timelinedrawV6num" id="timelinedrawV6num"></div>
+            <div class="timelinedrawV7num" id="timelinedrawV7num"></div>
+            <div class="timelinedrawV8num" id="timelinedrawV8num"></div>
+            <div class="timelinedrawV9num" id="timelinedrawV9num"></div>
+            <div class="timelinedrawV10num" id="timelinedrawV10num"></div>
+            <div class="timelinedrawV11num" id="timelinedrawV11num"></div>
+            <div class="timelinedrawV12num" id="timelinedrawV12num"></div>
+        </div>
+        <div class="timeline23" id="timeline23">
+            <div id="activitystartW1" class="activity"></div>
+            <div id="activitystartW2" class="activity"></div>
+            <div id="activitystartW3" class="activity"></div>
+            <div id="activitystartW4" class="activity"></div>
+            <div class="timelinedrawW1" id="timelinedrawW1"></div>
+            <div class="timelinedrawW2" id="timelinedrawW2"></div>
+            <div class="timelinedrawW3" id="timelinedrawW3"></div>
+            <div class="timelinedrawW4" id="timelinedrawW4"></div>
+            <div class="timelinedrawW5" id="timelinedrawW5"></div>
+            <div class="timelinedrawW6" id="timelinedrawW6"></div>
+            <div class="timelinedrawW7" id="timelinedrawW7"></div>
+            <div class="timelinedrawW8" id="timelinedrawW8"></div>
+            <div class="timelinedrawW9" id="timelinedrawW9"></div>
+            <div class="timelinedrawW10" id="timelinedrawW10"></div>
+            <div class="timelinedrawW11" id="timelinedrawW11"></div>
+            <div class="timelinedrawW12" id="timelinedrawW12"></div>
+            <div class="timelinedrawW13" id="timelinedrawW13"></div>
+            <div class="timelinedrawW1num" id="timelinedrawW1num"></div>
+            <div class="timelinedrawW2num" id="timelinedrawW2num"></div>
+            <div class="timelinedrawW3num" id="timelinedrawW3num"></div>
+            <div class="timelinedrawW4num" id="timelinedrawW4num"></div>
+            <div class="timelinedrawW5num" id="timelinedrawW5num"></div>
+            <div class="timelinedrawW6num" id="timelinedrawW6num"></div>
+            <div class="timelinedrawW7num" id="timelinedrawW7num"></div>
+            <div class="timelinedrawW8num" id="timelinedrawW8num"></div>
+            <div class="timelinedrawW9num" id="timelinedrawW9num"></div>
+            <div class="timelinedrawW10num" id="timelinedrawW10num"></div>
+            <div class="timelinedrawW11num" id="timelinedrawW11num"></div>
+            <div class="timelinedrawW12num" id="timelinedrawW12num"></div>
+        </div>
+        <div class="timeline24" id="timeline24">
+            <div id="activitystartX1" class="activity"></div>
+            <div id="activitystartX2" class="activity"></div>
+            <div id="activitystartX3" class="activity"></div>
+            <div id="activitystartX4" class="activity"></div>
+            <div class="timelinedrawX1" id="timelinedrawX1"></div>
+            <div class="timelinedrawX2" id="timelinedrawX2"></div>
+            <div class="timelinedrawX3" id="timelinedrawX3"></div>
+            <div class="timelinedrawX4" id="timelinedrawX4"></div>
+            <div class="timelinedrawX5" id="timelinedrawX5"></div>
+            <div class="timelinedrawX6" id="timelinedrawX6"></div>
+            <div class="timelinedrawX7" id="timelinedrawX7"></div>
+            <div class="timelinedrawX8" id="timelinedrawX8"></div>
+            <div class="timelinedrawX9" id="timelinedrawX9"></div>
+            <div class="timelinedrawX10" id="timelinedrawX10"></div>
+            <div class="timelinedrawX11" id="timelinedrawX11"></div>
+            <div class="timelinedrawX12" id="timelinedrawX12"></div>
+            <div class="timelinedrawX13" id="timelinedrawX13"></div>
+            <div class="timelinedrawX14" id="timelinedrawX14"></div>
+            <div class="timelinedrawX1num" id="timelinedrawX1num"></div>
+            <div class="timelinedrawX2num" id="timelinedrawX2num"></div>
+            <div class="timelinedrawX3num" id="timelinedrawX3num"></div>
+            <div class="timelinedrawX4num" id="timelinedrawX4num"></div>
+            <div class="timelinedrawX5num" id="timelinedrawX5num"></div>
+            <div class="timelinedrawX6num" id="timelinedrawX6num"></div>
+            <div class="timelinedrawX7num" id="timelinedrawX7num"></div>
+            <div class="timelinedrawX8num" id="timelinedrawX8num"></div>
+            <div class="timelinedrawX9num" id="timelinedrawX9num"></div>
+            <div class="timelinedrawX10num" id="timelinedrawX10num"></div>
+            <div class="timelinedrawX11num" id="timelinedrawX11num"></div>
+            <div class="timelinedrawX12num" id="timelinedrawX12num"></div>
+        </div>
+    </div>
+</div>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+        apiKey: "AIzaSyD4M95e4QpJTDMntBtixItxi27dV9cSkW0",
+        authDomain: "rule-your-time.firebaseapp.com",
+        projectId: "rule-your-time",
+        storageBucket: "rule-your-time.appspot.com",
+        messagingSenderId: "880322888508",
+        appId: "1:880322888508:web:c10f9626bfd746080d9439",
+        measurementId: "G-4GSBC4H0VW"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+
+    import {getDatabase, ref, get, set, child, update, remove}
+    from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
+
+    import {
+        getAuth,
+        createUserWithEmailAndPassword,
+        signInWithEmailAndPassword,
+        onAuthStateChanged,
+        signOut
+    //Update the below URL with the appropriate version if necessary.
+    } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
+
+    const db = getDatabase();
+    
+    const auth = getAuth(app);
+
+    const userSignOut = async() => {
+        await signOut(auth);
+    }
+
+    localStorage.clear();
+
+    function removeData(the_id){
+            remove(ref(db, "users/"+ the_id+"/days"))
+            .then(()=>{
+                console.log("Data deleted successfully");
+            })
+            .catch((error)=>{
+                console.log(error);
+            });
+    }
+  
+    function get_date(myDate){
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+            const daysOfMonths = {"January":31, "February":28, "March":31, "April":30, "May":31, "June":30, "July":31, "August":31, "September":30, "October":31, "November":30, "December":31}
+            const month_abv = {"January":"JAN", "February":"FEB", "March":"MAR", "April":"APR", "May":"MAY", "June":"JUN", "July":"JUL", "August":"AUG", "September":"SEP", "October":"OCT", "November":"NOV", "December":"DEC"}
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth(); //January is 0!
+            var yy = today.getFullYear();
+            if(yy%4==0){
+                daysOfMonths["February"] = 29;
+            }
+            var current_mm = mm;
+            if(dd+myDate<=0){
+                while (dd+myDate<=0) {
+                    mm -= 1;
+                    if(mm == -1){
+                        mm = 11;
+                        yy -= 1;
+                        if(yy%4==0){
+                            daysOfMonths["February"] = 29;
+                        }else{
+                            daysOfMonths["February"] = 28;
+                        }
+                    }
+                    myDate += daysOfMonths[months[mm]];
+                }
+                dd = dd+myDate;
+                mm = month_abv[months[mm]];
+            }else if(dd+myDate>daysOfMonths[months[mm]]){
+                while (dd+myDate>daysOfMonths[months[current_mm]]) {
+                    mm += 1;
+                    if(mm == 12){
+                        mm = 0;
+                        yy += 1
+                        if(yy%4==0){
+                            daysOfMonths["February"] = 29;
+                        }else{
+                            daysOfMonths["February"] = 28
+                        }
+                    }
+                    myDate -= daysOfMonths[months[mm]];
+                }
+                dd = dd+myDate;
+                mm = month_abv[months[mm]];
+            }else{
+                dd = dd+myDate;
+                mm = month_abv[months[mm]];
+            }
+            return  (String(dd)+mm+String(yy))
+        }
+
+    function bringactivityInfo(the_id,dayNumber){
+        const dbref = ref(db);
+        get(child(dbref, "users/"+the_id+"/days/"+get_date(dayNumber-8)))
+        .then((snapshot)=>{
+            if(snapshot.exists()){
+                timelist = JSON.parse(snapshot.val().timelist);
+                timelistnames = JSON.parse(snapshot.val().names);
+                timelistcolors = JSON.parse(snapshot.val().colors);
+                timelistid = JSON.parse(snapshot.val().id);
+                timelistdescriptions = JSON.parse(snapshot.val().description);
+                timelistimportance = JSON.parse(snapshot.val().importance);
+                timelistlike = JSON.parse(snapshot.val().like);
+                timelistcompletion = JSON.parse(snapshot.val().completion)
+            } else {
+                timelist = [0,0];
+                timelistnames = [0];
+                timelistcolors = [0];
+                timelistid = [0];
+                timelistdescriptions = [0];
+                timelistimportance = [0];
+                timelistlike = [0];
+                timelistcompletion = [0];
+            }
+        })
+        .catch((error)=>{
+            alert(error)
+        })
+        get(child(dbref, "users/"+the_id+"/activityInfo"))
+        .then((snapshot)=>{
+            isCompleted = JSON.parse(snapshot.val().completedActivities);
+            totalActivities = JSON.parse(snapshot.val().totalActivities);
+            totalLikes = JSON.parse(snapshot.val().totalLikes);
+            totalImportance = JSON.parse(snapshot.val().totalImportance);
+        })
+        .catch((error)=>{
+            alert(error)
+        })
+        setTimeout(function(){
+            removeData(the_id);
+            setAccurateDates(the_id);
+        },1000);
+    }
+    var existing_days;
+    function setLocalStorage(the_id){
+        const dbref = ref(db);
+        var date, random;
+        existing_days = [];
+        for (let i = 1; i < 16; i++) {
+            date = get_date(i-8)
+            get(child(dbref, "users/"+the_id+"/days/"+date))
+            .then((snapshot)=>{
+                if(snapshot.exists()){
+                    existing_days.push(i);
+                    random = "timelist"+String(i);
+                    localStorage.setItem(random, snapshot.val().timelist);
+                    random = 'timelistnames'+String(i);
+                    localStorage.setItem(random, snapshot.val().names);
+                    random = 'timelistcolors' + String(i);
+                    localStorage.setItem(random, snapshot.val().colors);
+                    random = 'timelistdescriptions' + String(i);
+                    localStorage.setItem(random, snapshot.val().description);
+                    random = 'timelistimportance' + String(i);
+                    localStorage.setItem(random, snapshot.val().importance);
+                    random = 'timelistlike' + String(i);
+                    localStorage.setItem(random, snapshot.val().like);
+                    random = 'timelistid' + String(i);
+                    localStorage.setItem(random, snapshot.val().id);
+                    random = 'timelistcompletion'+String(i);
+                    localStorage.setItem(random, snapshot.val().completion)
+                } else {
+                    random = 'timelist'+String(i);
+                    localStorage.setItem(random, JSON.stringify([0, 0]));
+                    random = 'timelistnames'+String(i);
+                    localStorage.setItem(random, JSON.stringify([0]));
+                    random = 'timelistcolors'+String(i);
+                    localStorage.setItem(random, JSON.stringify([0]));
+                    random = 'timelistdescriptions'+String(i);
+                    localStorage.setItem(random, JSON.stringify([0]));
+                    random = 'timelistimportance'+String(i);
+                    localStorage.setItem(random, JSON.stringify([0]));
+                    random = 'timelistlike'+String(i);
+                    localStorage.setItem(random, JSON.stringify([0]));
+                    random = 'timelistid'+String(i);
+                    localStorage.setItem(random, JSON.stringify([0]));
+                    random = 'timelistcompletion'+String(i);
+                    localStorage.setItem(random, JSON.stringify([0]));
+                }
+            })
+            .catch((error)=>{
+                alert(error)
+            })
+        }
+        get(child(dbref, "users/"+the_id+"/activityInfo"))
+        .then((snapshot)=>{
+            localStorage.setItem("isCompleted", snapshot.val().completedActivities)
+            localStorage.setItem("totalActivities", snapshot.val().totalActivities)
+            localStorage.setItem("totalLikes", snapshot.val().totalLikes)
+            localStorage.setItem("totalImportance", snapshot.val().totalImportance)
+        })
+        .catch((error)=>{
+            alert(error)
+        })
+        setTimeout(function(){
+            removeData(the_id);
+            setAccurateDates(the_id);
+        },1000);
+    }
+
+    
+    function setAccurateDates(id){
+        var date, random;
+        for (let i of existing_days){
+            date = get_date(i-8);
+            set(ref(db, "users/"+id+"/days/"+date),{
+                timelist: localStorage.getItem("timelist"+String(i)),
+                names: localStorage.getItem("timelistnames"+String(i)),
+                colors: localStorage.getItem("timelistcolors"+String(i)),
+                description: localStorage.getItem("timelistdescriptions"+String(i)),
+                importance: localStorage.getItem("timelistimportance"+String(i)),
+                like: localStorage.getItem("timelistlike"+String(i)),
+                id: localStorage.getItem("timelistid"+String(i)),
+                completion: localStorage.getItem("timelistcompletion"+String(i))
+            })
+            .then(()=>{
+                set(ref(db, "users/"+id+"/activityInfo"),{
+                    completedActivities: localStorage.getItem("isCompleted"),
+                    totalActivities: JSON.stringify(totalActivities),
+                    totalLikes: JSON.stringify(totalLikes),
+                    totalImportance: JSON.stringify(totalImportance)
+                })
+                .then(()=>{
+                    console.log("data added");
+                })
+                .catch((error)=>{
+                    alert(error);
+                });
+            })
+            .catch((error)=>{
+                alert(error);
+            });
+        }
+    }
+
+    function setActivities(the_id, day){
+        set(ref(db, "users/"+the_id+"/days/"+get_date(day-8)),{
+            timelist: JSON.stringify(timelist),
+            names: JSON.stringify(timelistnames),
+            colors: JSON.stringify(timelistcolors),
+            description: JSON.stringify(timelistdescriptions),
+            importance: JSON.stringify(timelistimportance),
+            like: JSON.stringify(timelistlike),
+            id: JSON.stringify(timelistid),
+            completion: JSON.stringify(timelistcompletion)
+        })
+        .then(()=>{
+            set(ref(db, "users/"+the_id+"/activityInfo"),{
+                completedActivities: localStorage.getItem("isCompleted"),
+                totalActivities: JSON.stringify(totalActivities),
+                totalLikes: JSON.stringify(totalLikes),
+                totalImportance: JSON.stringify(totalImportance)
+            })
+            .then(()=>{
+                console.log("data added");
+            })
+            .catch((error)=>{
+                alert(error);
+            });
+        })
+        .catch((error)=>{
+            alert(error);
+        });                
+        }
+
+    function checkAutState(){
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const uid = user.uid;
+                console.log("signed in!");
+                const dbref = ref(db);
+                get(child(dbref, "users/"+uid+"/editorInfo/Time_Line_Start"))
+                .then((snapshot)=>{
+                    if(snapshot.exists()){
+                        timelinestart = parseInt(snapshot.val().timelinestart);
+                    } else {
+                        timelinestart = 6;
+                    }
+                    timelinestart2 = timelinestart;
+                    document.querySelector(".starttimeselector").value = timelinestart;
+                })
+                .catch((error)=>{
+                    alert(error)
+                })
+                get(child(dbref, "users/"+uid+"/favoriteActivities"))
+                .then((snapshot)=>{
+                    if(snapshot.exists()){
+                        favoriteactivities = JSON.parse(snapshot.val().favoriteActivities);
+                    } else {
+                        favoriteactivities = [];
+                    }
+                })
+                .catch((error)=>{
+                    alert(error)
+                })
+                setTimeout(function(){
+                    bringactivityInfo(uid,8);
+                    adjust_date_position(get_current_date());
+                    setLocalStorage(uid);
+                    setTimeout(function(){
+                        timelinesize(); 
+                        bringactivityinfo(); 
+                        adjustsomeproperties();
+                    },1000);
+                    setTimeout(function(){
+                        adjustactivitysizes(true);
+                        adjustbackgroundcolors();
+                        timelinesize();
+                    }, 3000);
+                },500);
+                
+            } else {
+                // User is signed out
+                // ...
+                console.log("signed out!");
+                window.location.href = "index.html";
+            }
+            });
+    }
+    checkAutState();
+    function getActivityInfo(){
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const uid = user.uid;
+                bringactivityInfo(uid, day_number);              
+            } else {
+                // User is signed out
+                // ...
+                console.log("signed out!");
+                window.location.href = "index.html";
+            }
+        });
+    }
+
+    function adjustActivityInfo(){
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const uid = user.uid;
+                setActivities(uid, day_number);              
+            } else {
+                // User is signed out
+                // ...
+                console.log("signed out!");
+                window.location.href = "index.html";
+            }
+        });
+    }
+
+    function setTimeLineStart(){
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const uid = user.uid;
+                set(ref(db, "users/"+uid+"/editorInfo/Time_Line_Start"),{
+                    timelinestart: localStorage.getItem("timeLineStart")
+                })
+                .then(()=>{
+                    console.log("data added");
+                })
+                .catch((error)=>{
+                    alert(error);
+                });
+            } else {
+                // User is signed out
+                // ...
+                console.log("signed out!");
+                window.location.href = "index.html";
+            }
+        });
+    }
+
+    function setFavorites(){
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const uid = user.uid;
+                set(ref(db, "users/"+uid+"/favoriteActivities"),{
+                    favoriteActivities: JSON.stringify(favoriteactivities)
+                })
+                .then(()=>{
+                    console.log("data added");
+                })
+                .catch((error)=>{
+                    alert(error);
+                });
+            } else {
+                console.log("signed out!");
+                window.location.href = "index.html";
+            }
+        });
+    }
+
+    window.getActivities = getActivityInfo;
+    window.adjustActivities = adjustActivityInfo;
+    window.setTimeLineStart = setTimeLineStart;
+    window.setFavorites = setFavorites;
+
+</script>
+<script src="activities.js"></script>
+</body>
+</html>

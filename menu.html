@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rule Your Time</title>
+    <link rel="stylesheet" href="menu.css">
+</head>
+<body>
+    <img src="time-background.png" alt="" class="background">
+    <img src="time-background.png" alt="" class="background2">
+    <img src="time-background.png" alt="" class="background3">
+    <img src="time-background.png" alt="" class="background4">
+    <div class="box">
+        <h1></h1>
+        <h3>Welcome!</h3>
+        <a href="activities.html" class="activities"><button>Activities</button></a><br>
+        <a href="progress.html" class="progress"><button>Progress</button></a><br>
+        <a href="about.html" class="about"><button>About</button></a><br>
+        <a href="index.html" class="signout"><button>Sign-Out</button></a>
+    </div>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyD4M95e4QpJTDMntBtixItxi27dV9cSkW0",
+            authDomain: "rule-your-time.firebaseapp.com",
+            projectId: "rule-your-time",
+            storageBucket: "rule-your-time.appspot.com",
+            messagingSenderId: "880322888508",
+            appId: "1:880322888508:web:c10f9626bfd746080d9439",
+            measurementId: "G-4GSBC4H0VW"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        import {getDatabase, ref, get, set, child, update, remove}
+        from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
+
+        import {
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            onAuthStateChanged,
+            signOut
+        //Update the below URL with the appropriate version if necessary.
+        } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
+
+        const db = getDatabase();
+        
+        const auth = getAuth(app);
+
+        const userSignOut = async() => {
+            await signOut(auth);
+        }
+
+        function FindData(ID) {
+            const dbref = ref(db);
+            get(child(dbref, "users/" + ID))
+            .then((snapshot)=>{
+                if(snapshot.exists()){
+                    document.querySelector(".box > h1").innerHTML = snapshot.val().username;
+                } else {
+                    console.log("it doesn't exist");
+                }
+            })
+            .catch((error)=>{
+                alert(error)
+            })
+        }
+
+        function RemoveData(location){
+
+            remove(ref(db, "users/"+ location))
+            .then(()=>{
+                console.log("Data deleted successfully");
+            })
+            .catch((error)=>{
+                alert(error);
+            });
+        }
+
+        function checkAutState(){
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    const uid = user.uid;
+                    const dbref = ref(db);
+                    console.log("signed in!");
+                    var theLastLogin;
+                    get(child(dbref, "users/" + uid +"/lastLoginDate"))
+                    .then((snapshot)=>{
+                        if(snapshot.exists()){
+                            theLastLogin = snapshot.val().lastLoginDate;
+                        } else {
+                            theLastLogin = get_date(-16);
+                            console.log("what");
+                        }
+                    })
+                    .catch((error)=>{
+                        alert(error)
+                    })
+                    setTimeout(function(){
+                        console.log(theLastLogin);
+                        var loginDayDifference = daysBetween(theLastLogin, get_date(0));
+                        if(loginDayDifference>15){
+                            RemoveData(uid+"/days");
+                        }else{
+                            for (let index = -(loginDayDifference+7); index < -7; index++) {
+                                get(child(dbref, "users/" + uid +"/days/"+get_date(index)))
+                                .then((snapshot)=>{
+                                    if(snapshot.exists()){
+                                        RemoveData(uid+"/days/"+get_date(index))
+                                    }
+                                })
+                                .catch((error)=>{
+                                    alert(error)
+                                })
+                            }
+                        }
+                        set(ref(db, "users/"+uid+"/lastLoginDate"),{
+                            lastLoginDate: get_date(0)
+                        })
+                        .catch((error)=>{
+                            alert(error);
+                        }); 
+                        FindData(uid);
+                        setCompletedActivities(uid);
+                    },500)
+                } else {
+                    // User is signed out
+                    // ...
+                    console.log("signed out!");
+                    window.location.href = "index.html";
+                }
+            });
+        }
+        checkAutState();
+
+        document.querySelector(".signout").addEventListener("click", function(){
+            userSignOut();
+            window.location.href = "index.html";
+        });
+
+        function daysBetween(date1, date2) {
+            var parsedDate1 = date1.length - 8;
+            var parsedDate2 = date2.length - 8;
+            parsedDate1 = new Date(parseInt(date1.substring(4)), convertMonth(date1.substring(1+parsedDate1, 4+parsedDate1)), parseInt(date1.substring(0, 1+parsedDate1)));
+            parsedDate2 = new Date(parseInt(date2.substring(4)), convertMonth(date2.substring(1+parsedDate2, 4+parsedDate2)), parseInt(date2.substring(0, 1+parsedDate2)));
+
+            const diffInMs = Math.abs(parsedDate2 - parsedDate1);
+
+            const diffInDays = Math.round(diffInMs / (1000 * 60 * 60 * 24));
+            return diffInDays;
+        }
+
+        function convertMonth(monthAbbr) {
+            const months = {
+                JAN: 0, FEB: 1, MAR: 2, APR: 3, MAY: 4, JUN: 5,
+                JUL: 6, AUG: 7, SEP: 8, OCT: 9, NOV: 10, DEC: 11
+            };
+            return months[monthAbbr];
+        }
+
+        function get_date(myDate){
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+            const daysOfMonths = {"January":31, "February":28, "March":31, "April":30, "May":31, "June":30, "July":31, "August":31, "September":30, "October":31, "November":30, "December":31}
+            const month_abv = {"January":"JAN", "February":"FEB", "March":"MAR", "April":"APR", "May":"MAY", "June":"JUN", "July":"JUL", "August":"AUG", "September":"SEP", "October":"OCT", "November":"NOV", "December":"DEC"}
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth(); //January is 0!
+            var yy = today.getFullYear();
+            if(yy%4==0){
+                daysOfMonths["February"] = 29;
+            }
+            var current_mm = mm;
+            if(dd+myDate<=0){
+                while (dd+myDate<=0) {
+                    mm -= 1;
+                    if(mm == 0){
+                        mm = 11;
+                        yy -= 1;
+                        if(yy%4==0){
+                            daysOfMonths["February"] = 29;
+                        }else{
+                            daysOfMonths["February"] = 28;
+                        }
+                    }
+                    myDate += daysOfMonths[months[mm]];
+                }
+                dd = dd+myDate;
+                mm = month_abv[months[mm]];
+            }else if(dd+myDate>daysOfMonths[months[mm]]){
+                while (dd+myDate>daysOfMonths[months[current_mm]]) {
+                    mm += 1;
+                    if(mm == 11){
+                        mm = 0;
+                        yy += 1
+                        if(yy%4==0){
+                            daysOfMonths["February"] = 29;
+                        }else{
+                            daysOfMonths["February"] = 28
+                        }
+                    }
+                    myDate -= daysOfMonths[months[mm]];
+                }
+                dd = dd+myDate;
+                mm = month_abv[months[mm]];
+            }else{
+                dd = dd+myDate;
+                mm = month_abv[months[mm]];
+            }
+            return  (String(dd)+mm+String(yy))
+        }
+
+
+
+        function setCompletedActivities(the_id){
+            const dbref = ref(db);
+            var theList, totalActivityList,totalLikeList, totalImportanceList;
+            var newList = [[get_date(0)]];
+            var newTotalActivityList = [[get_date(0)],0,0,0,0,0,0,0];
+            for (let index = 0; index < 365; index++) {
+                newList.push(0);
+                newTotalActivityList.push(0);
+            }
+            var newTotalLikeList = newTotalActivityList;
+            var newTotalImportanceList = newTotalActivityList;
+            get(child(dbref, "users/"+the_id+"/activityInfo"))
+            .then((snapshot)=>{
+                if (snapshot.exists()) {
+                    console.log("completed activities list already exist!");
+                    theList = JSON.parse(snapshot.val().completedActivities);
+                    totalActivityList = JSON.parse(snapshot.val().totalActivities);
+                    totalLikeList = JSON.parse(snapshot.val().totalLikes);
+                    totalImportanceList = JSON.parse(snapshot.val().totalImportance);
+                }else{
+                    set(ref(db, "users/"+the_id+"/activityInfo"),{
+                        completedActivities: JSON.stringify(newList),
+                        totalActivities: JSON.stringify(newTotalActivityList),
+                        totalLikes: JSON.stringify(newTotalLikeList),
+                        totalImportance:JSON.stringify(newTotalImportanceList)
+                    })
+                    .then(()=>{
+                        console.log("success!");
+                        theList = newList;
+                        totalActivityList = newTotalActivityList;
+                        totalLikeList = newTotalLikeList;
+                        totalImportanceList = newTotalImportanceList;
+                    })
+                    .catch((error)=>{
+                        alert(error);
+                    }); 
+                }  
+            })
+            .catch((error)=>{
+                alert(error)
+            })
+            setTimeout(function(){
+                console.log("this is the list",theList);
+                var dayDifference = daysBetween(theList[0][0], get_date(0));
+                console.log("this is the day difference", dayDifference);
+                while(dayDifference>0){
+                    dayDifference -= 1;
+                    theList.splice(1,1);
+                    theList.push(0);
+                    totalActivityList.splice(1,1);
+                    totalActivityList.push(0);
+                    totalLikeList.splice(1,1);
+                    totalLikeList.push(0);
+                    totalImportanceList.splice(1,1);
+                    totalImportanceList.push(0);
+                }
+                theList[0]=[get_date(0)];
+                totalActivityList[0]=[get_date(0)];
+                totalLikeList[0]=[get_date(0)];
+                totalImportanceList[0]=[get_date(0)];
+                set(ref(db, "users/"+the_id+"/activityInfo"),{
+                    completedActivities: JSON.stringify(theList),
+                    totalActivities: JSON.stringify(totalActivityList),
+                    totalLikes: JSON.stringify(totalLikeList),
+                    totalImportance: JSON.stringify(totalImportanceList)
+                })
+                .then(()=>{
+                    console.log()
+                })
+                .catch((error)=>{
+                    alert(error);
+                }); 
+            },1000);
+        }
+    </script>
+</body>
+</html>

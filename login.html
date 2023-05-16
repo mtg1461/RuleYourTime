@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="login-signup.css">
+</head>
+<body>
+    <img src="time-background.png" alt="" class="background">
+    <img src="time-background.png" alt="" class="background2">
+    <img src="time-background.png" alt="" class="background3">
+    <img src="time-background.png" alt="" class="background4">
+    <div class="box">
+        <br>
+        <a href="signup.html"><h4>Don't have an account?</h4></a>
+        <h1>Login</h1>
+        <div class="the_input">
+            <input type="text" placeholder="e-mail" required><br>
+            <input type="password" placeholder="password" required><br>
+            <h3></h3>
+            <div class="the_button"><button type="submit">Login</button></div>
+            <a href="index.html" class="back">&#8617;</a>
+        </div>
+    </div>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyD4M95e4QpJTDMntBtixItxi27dV9cSkW0",
+            authDomain: "rule-your-time.firebaseapp.com",
+            projectId: "rule-your-time",
+            storageBucket: "rule-your-time.appspot.com",
+            messagingSenderId: "880322888508",
+            appId: "1:880322888508:web:c10f9626bfd746080d9439",
+            measurementId: "G-4GSBC4H0VW"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        import {getDatabase, ref, get, set, child, update, remove}
+        from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
+
+        import {
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            onAuthStateChanged,
+            signOut
+        //Update the below URL with the appropriate version if necessary.
+        } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
+
+        const db = getDatabase();
+        
+        const auth = getAuth(app);
+      
+        const userSignOut = async() => {
+            await signOut(auth);
+        }
+        
+        const userSignIn = async(signInEmail,signInPassword) => {
+            signInWithEmailAndPassword(auth, signInEmail, signInPassword)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                checkAutState();
+                window.location.href = "menu.html";
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode + errorMessage);
+                alert(errorMessage);
+            })
+        }
+
+        function checkAutState(){
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    const uid = user.uid;
+                    console.log("signed in!");
+                    // InsertData(uid, document.querySelector(".the_input > input:nth-child(1)").value, document.querySelector(".the_input > input:nth-child(3)").value);
+                } else {
+                    // User is signed out
+                    // ...
+                    console.log("signed out!");
+                }
+            });
+        }
+        checkAutState();
+        
+        var username = document.querySelector(".the_input > input:nth-child(1)");
+        var password = document.querySelector(".the_input > input:nth-child(3)");
+        document.querySelector(".the_button").addEventListener("click", function(){
+            var message = isValid();
+            var id;
+            if(message == true){
+                userSignIn(username.value, password.value);
+            }else{
+                document.querySelector(".the_input > h3").innerHTML = message;
+            }
+        });
+
+        function isValid(){
+            console.log(username.value);
+            if(username.value.length < 6){
+                return "E-mail should be at least 6 characters"
+            }else if(password.value.length < 6){
+                return "Password should be at least 6 characters"
+            }
+            return true
+        }
+
+        document.querySelector(".back").addEventListener("click", function(){
+            userSignOut();
+        });
+        userSignOut();
+    </script>
+</body>
+</html>

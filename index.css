@@ -1,0 +1,95 @@
+body{
+    overflow: hidden;
+    background-image: "time-background.png";
+}
+*{
+    font-family: sans-serif;
+}
+.background,
+.background2,
+.background3,
+.background4{
+    width: 100vw;
+    height: auto;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+.background2{
+    top: 52.59vw;
+}
+.background3{
+    top: 105.18vw;
+}
+.background4{
+    top: 157.77vw;
+}
+
+
+.box{
+    position: relative;
+    width: 40vw;
+    min-width: 300px;
+    height: fit-content;
+    min-height: 250px;
+    background: linear-gradient(144deg, rgb(208, 253, 255), rgb(243, 253, 255), rgb(206, 253, 255));
+    left: 50%;
+    transform: translateX(-50%);
+    top: 180px;
+    z-index: 2;
+    border-radius: 30px;
+    opacity: 0.8;
+}
+
+h1{
+    position: relative;
+    text-align: center;
+    font-style: normal;
+    font-weight: 800;
+    font-family: sans-serif;
+    text-shadow: 3px solid black;
+    top: 25px;
+}
+h3{
+    position: relative;
+    text-align: center;
+    font-style: italic;
+    font-weight: 800;
+    font-family: sans-serif;
+    text-shadow: 3px solid black;
+    top: 5px;
+}
+
+.login,
+.signup{
+    width: 100%;
+    position: relative;
+}
+
+.login > button,
+.signup > button{
+    position: relative;
+    width: 150px;
+    height: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 10px;
+    font-family: sans-serif;
+    border-radius: 15px;
+    font-weight: 900;
+    font-size: 1.2rem;
+    color: black;
+    background: linear-gradient(144deg, rgb(141, 141, 255), rgb(189, 189, 255), rgb(162, 162, 255));
+    box-shadow: 0 0 3px black;
+    cursor: pointer;
+}
+
+.login > button:hover{
+    font-size: 1.25rem;
+    box-shadow: 0 0 5px;
+}
+
+.signup > button:hover{
+    font-size: 1.25rem;
+    box-shadow: 0 0 5px;
+}

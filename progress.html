@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="progress.js"></script>
+    <link rel="stylesheet" href="progress.css">
+    <title>Rule Your Time | Progress</title>
+</head>
+<body onload="init()">
+    <div class="content">
+        <a href="menu.html" class="back">&#8617;</a>
+        <h1>Check List</h1>
+        <div class="date_box">
+            <button class="triangle-left" id="triangle-left">&#11164;</button>
+            <button class="current_date" id="current_date"></button>
+            <button class="triangle-right" id="triangle-right">&#11166;</button>
+        </div>
+        <p class="noData">No Data Found For This Day</p>
+        <div class="container">
+        
+            <div class="box-container">
+        
+                <div class="box">
+                    <div class="checklist">
+                        <input type="checkbox" id="item1" name="item-1" value="value1">
+                        <label for="item1"></label>
+                        <p></p>
+                    </div>
+                </div>
+        
+                <div class="box">
+                    <div class="checklist">
+                        <input type="checkbox" id="item2" name="item-2" value="value2">
+                        <label for="item2"></label>
+                        <p></p>
+                    </div>
+                </div>
+        
+                <div class="box">
+                    <div class="checklist">
+                        <input type="checkbox" id="item3" name="item-3" value="value3">
+                        <label for="item3"></label>
+                        <p></p>
+                    </div>
+                </div>
+        
+                <div class="box">
+                    <div class="checklist">
+                        <input type="checkbox" id="item4" name="item-4" value="value4">
+                        <label for="item4"></label>
+                        <p></p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="checklist">
+                        <input type="checkbox" id="item5" name="item-5" value="value5">
+                        <label for="item5"></label>
+                        <p></p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="checklist">
+                        <input type="checkbox" id="item6" name="item-6" value="value6">
+                        <label for="item6"></label>
+                        <p></p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="checklist">
+                        <input type="checkbox" id="item7" name="item-7" value="value7">
+                        <label for="item7"></label>
+                        <p></p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="checklist">
+                        <input type="checkbox" id="item8" name="item-8" value="value8">
+                        <label for="item8"></label>
+                        <p></p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="checklist">
+                        <input type="checkbox" id="item9" name="item-9" value="value9">
+                        <label for="item9"></label>
+                        <p></p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="checklist">
+                        <input type="checkbox" id="item10" name="item-10" value="value10">
+                        <label for="item10"></label>
+                        <p></p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="checklist">
+                        <input type="checkbox" id="item11" name="item-11" value="value11">
+                        <label for="item11"></label>
+                        <p></p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="checklist">
+                        <input type="checkbox" id="item12" name="item-12" value="value12">
+                        <label for="item12"></label>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page_box">
+            <button class="triangle-left" id="pageLeft">&#11164;</button>
+            <button class="current_page" id="currentPage"></button>
+            <button class="triangle-right" id="pageRight">&#11166;</button>
+        </div>
+        <h1>Progress Graph</h1>
+        <div id="curve_chart" class="curve_chart"></div>
+        <div class="wrapper">
+            <input value="completion" class="chartType" type="radio" name="select" id="option-1" checked="checked">
+            <input value="dailyCount"  class="chartType" type="radio" name="select" id="option-2">
+            <input value="totalCount" class="chartType" type="radio" name="select" id="option-3">
+            <input value="like" class="chartType" type="radio" name="select" id="option-4">
+            <input value="importance" class="chartType" type="radio" name="select" id="option-5">
+            <label for="option-1" class="option option-1">
+                <div class="dot"></div>
+                <span>Completion(%)</span>
+            </label>
+            <label for="option-2" class="option option-2">
+                <div class="dot"></div>
+                <span>Daily Count</span>
+            </label>
+            <label for="option-3" class="option option-3">
+                <div class="dot"></div>
+                <span>Total Count</span>
+            </label>
+            <label for="option-4" class="option option-4">
+                <div class="dot"></div>
+                <span>Like&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            </label>
+            <label for="option-5" class="option option-5">
+                <div class="dot"></div>
+                <span>Importance</span>
+            </label>
+        </div>
+        <div class="radio">
+            <input type="radio" class="radio__input" value="7" name="myRadio" id="myRadio1" checked="checked">
+            <label for="myRadio1" class="radio__label">1 week</label>
+            <input type="radio" class="radio__input" value="14" name="myRadio" id="myRadio2">
+            <label for="myRadio2" class="radio__label">2 weeks</label>
+            <input type="radio" class="radio__input" value="30" name="myRadio" id="myRadio3">
+            <label for="myRadio3" class="radio__label">1 month</label>
+            <input type="radio" class="radio__input" value="90" name="myRadio" id="myRadio4">
+            <label for="myRadio4" class="radio__label">3 months</label>
+            <input type="radio" class="radio__input" value="365" name="myRadio" id="myRadio5">
+            <label for="myRadio5" class="radio__label">1 year</label>
+        </div>
+    </div>
+    <br><br><br><br>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+    
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyD4M95e4QpJTDMntBtixItxi27dV9cSkW0",
+            authDomain: "rule-your-time.firebaseapp.com",
+            projectId: "rule-your-time",
+            storageBucket: "rule-your-time.appspot.com",
+            messagingSenderId: "880322888508",
+            appId: "1:880322888508:web:c10f9626bfd746080d9439",
+            measurementId: "G-4GSBC4H0VW"
+        };
+    
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    
+        import {getDatabase, ref, get, set, child, update, remove}
+        from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
+    
+        import {
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            onAuthStateChanged,
+            signOut
+        //Update the below URL with the appropriate version if necessary.
+        } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
+    
+        const db = getDatabase();
+        
+        const auth = getAuth(app);
+
+        
+        var chartType = "completion";
+        var dateRange = 7;
+        var the_title, the_color;
+    
+        localStorage.clear();
+        function setLocalStorage(the_id){
+            const dbref = ref(db);
+            var date, random;
+            for (let i = 1; i < 16; i++) {
+                date = get_date(i-8)[1]+get_date(i-8)[0]+String(get_date(i-8)[2]);
+                get(child(dbref, "users/"+the_id+"/days/"+date))
+                .then((snapshot)=>{
+                    if(snapshot.exists()){
+                        random = "timelist"+String(i);
+                        localStorage.setItem(random, snapshot.val().timelist);
+                        random = 'timelistnames'+String(i);
+                        localStorage.setItem(random, snapshot.val().names);
+                        random = 'timelistcolors' + String(i);
+                        localStorage.setItem(random, snapshot.val().colors);
+                        random = 'timelistdescriptions' + String(i);
+                        localStorage.setItem(random, snapshot.val().description);
+                        random = 'timelistimportance' + String(i);
+                        localStorage.setItem(random, snapshot.val().importance);
+                        random = 'timelistlike' + String(i);
+                        localStorage.setItem(random, snapshot.val().like);
+                        random = 'timelistid' + String(i);
+                        localStorage.setItem(random, snapshot.val().id);
+                        random = 'timelistcompletion' + String(i);
+                        localStorage.setItem(random, snapshot.val().completion);
+                    } else {
+                        random = 'timelist'+String(i);
+                        localStorage.setItem(random, JSON.stringify([0, 0]));
+                        random = 'timelistnames'+String(i);
+                        localStorage.setItem(random, JSON.stringify([0]));
+                        random = 'timelistcolors'+String(i);
+                        localStorage.setItem(random, JSON.stringify([0]));
+                        random = 'timelistdescriptions'+String(i);
+                        localStorage.setItem(random, JSON.stringify([0]));
+                        random = 'timelistimportance'+String(i);
+                        localStorage.setItem(random, JSON.stringify([0]));
+                        random = 'timelistlike'+String(i);
+                        localStorage.setItem(random, JSON.stringify([0]));
+                        random = 'timelistid'+String(i);
+                        localStorage.setItem(random, JSON.stringify([0]));
+                        random = 'timelistcomplition'+String(i);
+                        localStorage.setItem(random, JSON.stringify([0]));
+                    }
+                })
+                .catch((error)=>{
+                    alert(error)
+                })
+            }
+            get(child(dbref, "users/"+the_id+"/activityInfo"))
+            .then((snapshot)=>{
+                localStorage.setItem("isCompleted", snapshot.val().completedActivities);
+                localStorage.setItem("totalActivities", snapshot.val().totalActivities);
+                localStorage.setItem("totalLikes", snapshot.val().totalLikes);
+                localStorage.setItem("totalImportance", snapshot.val().totalImportance);
+            })
+            .catch((error)=>{
+                alert(error)
+            })
+        }
+        
+
+
+        const userSignOut = async() => {
+            await signOut(auth);
+        }
+        localStorage.clear();
+        
+        function updateActivityCompletion(){
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    const uid = user.uid;
+                    console.log("signed in!");
+                    set(ref(db, "users/"+uid+"/activityInfo"),{
+                        completedActivities: JSON.stringify(isCompleted),
+                        totalActivities: localStorage.getItem("totalActivities"),
+                        totalLikes: localStorage.getItem("totalLikes"),
+                        totalImportance: localStorage.getItem("totalImportance")
+                    })
+                    .then(()=>{
+                        var date = get_date(dateToUpdate)[1]+get_date(dateToUpdate)[0]+String(get_date(dateToUpdate)[2]);
+                        set(ref(db, "users/"+uid+"/days/"+date),{
+                            completion: JSON.stringify(time_list_completion),
+                            timelist: localStorage.getItem("timelist"+String(checklist_date+8)),
+                            names: localStorage.getItem("timelistnames"+String(checklist_date+8)),
+                            colors: localStorage.getItem("timelistcolors"+String(checklist_date+8)),
+                            description: localStorage.getItem("timelistdescriptions"+String(checklist_date+8)),
+                            importance: localStorage.getItem("timelistimportance"+String(checklist_date+8)),
+                            like: localStorage.getItem("timelistlike"+String(checklist_date+8)),
+                            id: localStorage.getItem("timelistid"+String(checklist_date+8))
+                        })
+                        .catch((error)=>{
+                            alert(error);
+                        });
+                    })
+                    .catch((error)=>{
+                        alert(error);
+                    });
+                } else {
+                    // User is signed out
+                    // ...
+                    console.log("signed out!");
+                    window.location.href = "index.html";
+                }
+            });
+        }
+
+        function checkAutState(){
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    const uid = user.uid;
+                    console.log("signed in!");
+                    const dbref = ref(db);
+                    get(child(dbref, "users/"+uid+"/editorInfo/Time_Line_Start"))
+                    .then((snapshot)=>{
+                        if(snapshot.exists()){
+                            timelinestart = parseInt(snapshot.val().timelinestart);
+                        } else {
+                            timelinestart = 6;
+                        }
+                    })
+                    .catch((error)=>{
+                        alert(error)
+                    })
+                    setTimeout(adjustChecklist, 1000);
+                    setLocalStorage(uid);
+                    var dateRangeSelectors = document.querySelectorAll(".radio > input");
+                    dateRangeSelectors.forEach((button)=>{
+                        button.addEventListener("change", (e) => {
+                            if (e.target.checked) {
+                                dateRange = parseInt(e.target.value);
+                                setChartData();
+                            }
+                        });
+                    })
+                    var chartTypeSelectors = document.querySelectorAll(".chartType");
+                    chartTypeSelectors.forEach((button)=>{
+                        button.addEventListener("change", (e) => {
+                            if (e.target.checked) {
+                                chartType = e.target.value;
+                                setChartData();
+                            }
+                        });
+                    })
+                } else {
+                    // User is signed out
+                    // ...
+                    console.log("signed out!");
+                    window.location.href = "index.html";
+                }
+            });
+        }
+        checkAutState();
+
+        
+        
+        
+        var chartData = [];
+        var chartMin, chartMax;
+        function get_date(myDate){
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+            const daysOfMonths = {"January":31, "February":28, "March":31, "April":30, "May":31, "June":30, "July":31, "August":31, "September":30, "October":31, "November":30, "December":31}
+            const month_abv = {"January":"JAN", "February":"FEB", "March":"MAR", "April":"APR", "May":"MAY", "June":"JUN", "July":"JUL", "August":"AUG", "September":"SEP", "October":"OCT", "November":"NOV", "December":"DEC"}
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth(); //January is 0!
+            var yy = today.getFullYear();
+            if(yy%4==0){
+                daysOfMonths["February"] = 29;
+            }
+            var current_mm = mm;
+            if(dd+myDate<=0){
+                while (dd+myDate<=0) {
+                    mm -= 1;
+                    if(mm == -1){
+                        mm = 11;
+                        yy -= 1;
+                        if(yy%4==0){
+                            daysOfMonths["February"] = 29;
+                        }else{
+                            daysOfMonths["February"] = 28;
+                        }
+                    }
+                    myDate += daysOfMonths[months[mm]];
+                }
+                dd = dd+myDate;
+                mm = month_abv[months[mm]];
+            }else if(dd+myDate>daysOfMonths[months[mm]]){
+                while (dd+myDate>daysOfMonths[months[current_mm]]) {
+                    mm += 1;
+                    if(mm == 12){
+                        mm = 0;
+                        yy += 1
+                        if(yy%4==0){
+                            daysOfMonths["February"] = 29;
+                        }else{
+                            daysOfMonths["February"] = 28
+                        }
+                    }
+                    myDate -= daysOfMonths[months[mm]];
+                }
+                dd = dd+myDate;
+                mm = month_abv[months[mm]];
+            }else{
+                dd = dd+myDate;
+                mm = month_abv[months[mm]];
+            }
+            return [mm, String(dd), yy]
+        }
+        
+
+        
+        const setChartData = () => {
+            chartData=[];
+            var date, totalA, completedA, totalL, totalI, data;
+            if (chartType == "completion"){
+                chartData.push(['date', "completion"]);
+                the_color="#004ad4";
+            }else if(chartType == "dailyCount"){
+                chartData.push(['date', "count"]);
+                the_color="#cc3227";
+            }else if(chartType == "totalCount"){
+                chartData.push(['date', "count"]);
+                the_color="#136e1f";
+            }else if(chartType == "like"){
+                chartData.push(['date', "like"]);
+                the_color="#8b9140";
+            }else if(chartType == "importance"){
+                chartData.push(['date', "importance"]);
+                the_color="#633b4e";
+            }
+            var count = 0;
+            for (let index = 1; index < isCompleted.length-dateRange; index++) {
+                count += isCompleted[index];
+                }
+            for (let index = 0; index < dateRange; index++) {
+                date = get_date(index+1-dateRange)[0]+get_date(index+1-dateRange)[1];
+                totalA = JSON.parse(localStorage.getItem("totalActivities"))[isCompleted.length-dateRange+index];
+                completedA = parseInt(isCompleted[isCompleted.length-dateRange+index]);
+                totalL = JSON.parse(localStorage.getItem("totalLikes"))[isCompleted.length-dateRange+index];
+                totalI = JSON.parse(localStorage.getItem("totalImportance"))[isCompleted.length-dateRange+index];
+                if (chartType == "completion") {
+                    if(totalA == 0){
+                        data = 0;
+                    }else{
+                        data = parseInt(completedA*100/totalA);
+                    }
+                    chartData.push([date, data]);
+                    chartMin = -10; 
+                    chartMax = 110;
+                    the_title = "Completion (%)";
+                } else if(chartType == "dailyCount"){
+                    chartData.push([date, completedA]);
+                    chartMin = null; 
+                    chartMax = null;
+                    the_title = "Daily Activity Count";
+                } else if(chartType == "totalCount"){
+                    count += completedA;
+                    chartData.push([date, count]);
+                    chartMin = null; 
+                    chartMax = null;
+                    the_title = "Total Activity Count"
+                } else if(chartType == "like"){
+                    if(totalA == 0){
+                        data=5;
+                    }else{
+                        data = totalL/totalA;
+                    }
+                    chartData.push([date, data]);
+                    chartMin = 0; 
+                    chartMax = 10;
+                    the_title = "Average Like Amount";
+                } else if(chartType == "importance"){
+                    if(totalA == 0){
+                        data=5;
+                    }else{
+                        data = totalI/totalA;
+                    }
+                    chartData.push([date, data]);
+                    chartMin = 0; 
+                    chartMax = 10;
+                    the_title = "Average Importance Amount";
+                }             
+            }
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+        }
+        
+
+        
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable(chartData);
+            var options = {
+                title: the_title,
+                curveType: 'function',
+                legend: { position: 'bottom' },
+                colors:[the_color],
+                vAxis: { 
+                viewWindow:{
+                    min: chartMin,
+                    max: chartMax
+                }
+                }
+            };
+    
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+    
+            chart.draw(data, options);
+        }
+        window.addEventListener("resize", drawChart);
+        window.completionChange = updateActivityCompletion;
+        window.setChartData = setChartData;
+    </script>
+</body>
+</html>
